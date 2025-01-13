@@ -84,7 +84,7 @@ MEMSET:
 	;
 	; Note mark is for automatic replacement by IntyBASIC
 _TITLE:
-	BYTE 124,'Maze',0
+	BYTE 125,'Maze',0
         
 	;
 	; Main program
@@ -1674,13 +1674,13 @@ ENDM
 	;FILE Maze.bas
 	;[1] 	REM
 	SRCFILE "Maze.bas",1
-	;[2] 	REM Barzack
+	;[2] 	REM Maze
 	SRCFILE "Maze.bas",2
-	;[3] 	REM Demo for IntyBASIC
+	;[3] 	REM CIS 272 Honors Project
 	SRCFILE "Maze.bas",3
-	;[4] 	REM by Oscar Toledo G. http://nanochess.org
+	;[4] 	REM by Tej Sai Kakumanu
 	SRCFILE "Maze.bas",4
-	;[5] 	REM Jan/28/2014
+	;[5] 	REM Dec 2nd 2024
 	SRCFILE "Maze.bas",5
 	;[6] 	REM
 	SRCFILE "Maze.bas",6
@@ -3251,16 +3251,22 @@ T1:
 	;[33] load_room:
 	SRCFILE "Maze.bas",33
 	; LOAD_ROOM
-label_LOAD_ROOM:	;[34] 	IF #score = 5 THEN
+label_LOAD_ROOM:	;[34] 
 	SRCFILE "Maze.bas",34
+	;[35] 	
+	SRCFILE "Maze.bas",35
+	;[36] 
+	SRCFILE "Maze.bas",36
+	;[37] 	IF #score = 5 THEN
+	SRCFILE "Maze.bas",37
 	MVI var_&SCORE,R0
 	CMPI #5,R0
 	BNE T2
-	;[35] 		CLS
-	SRCFILE "Maze.bas",35
+	;[38] 		CLS
+	SRCFILE "Maze.bas",38
 	CALL CLRSCR
-	;[36] 		PRINT AT SCREENPOS(4, 5) COLOR CS_BLUE, "Well Done!"
-	SRCFILE "Maze.bas",36
+	;[39] 		PRINT AT SCREENPOS(4, 5) COLOR CS_BLUE, "Well Done!"
+	SRCFILE "Maze.bas",39
 	MVII #616,R0
 	MVO R0,_screen
 	MVII #1,R0
@@ -3287,33 +3293,33 @@ label_LOAD_ROOM:	;[34] 	IF #score = 5 THEN
 	XORI #544,R0
 	MVO@ R0,R4
 	MVO R4,_screen
-	;[37] 		
-	SRCFILE "Maze.bas",37
-	;[38] 		
-	SRCFILE "Maze.bas",38
-	;[39] 
-	SRCFILE "Maze.bas",39
-	;[40] 		MODE SCREEN_CS, STACK_WHITE, STACK_WHITE, STACK_WHITE, STACK_WHITE
+	;[40] 		
 	SRCFILE "Maze.bas",40
+	;[41] 		
+	SRCFILE "Maze.bas",41
+	;[42] 
+	SRCFILE "Maze.bas",42
+	;[43] 		MODE SCREEN_CS, STACK_WHITE, STACK_WHITE, STACK_WHITE, STACK_WHITE
+	SRCFILE "Maze.bas",43
 	MVII #30583,R0
 	MVO R0,_color
 	MVII #2,R0
 	MVO R0,_mode_select
-	;[41] 		WAIT
-	SRCFILE "Maze.bas",41
+	;[44] 		WAIT
+	SRCFILE "Maze.bas",44
 	CALL _wait
-	;[42] 		
-	SRCFILE "Maze.bas",42
-	;[43] 		PLAY OFF
-	SRCFILE "Maze.bas",43
+	;[45] 		
+	SRCFILE "Maze.bas",45
+	;[46] 		PLAY OFF
+	SRCFILE "Maze.bas",46
 	CLRR R0
 	CALL _play_music
-	;[44] 			
-	SRCFILE "Maze.bas",44
-	;[45] 	
-	SRCFILE "Maze.bas",45
-	;[46] 		IF CONT <> 0 AND TIMER = 0 THEN
-	SRCFILE "Maze.bas",46
+	;[47] 			
+	SRCFILE "Maze.bas",47
+	;[48] 	
+	SRCFILE "Maze.bas",48
+	;[49] 		IF CONT <> 0 AND TIMER = 0 THEN
+	SRCFILE "Maze.bas",49
 	MVI 510,R0
 	XOR 511,R0
 	MVII #65535,R0
@@ -3328,135 +3334,138 @@ T4:
 T5:
 	ANDR R1,R0
 	BEQ T3
-	;[47] 			GOTO restart
-	SRCFILE "Maze.bas",47
-	B label_RESTART
-	;[48] 		END IF
-	SRCFILE "Maze.bas",48
-T3:
-	;[49] 		GOTO load_room
-	SRCFILE "Maze.bas",49
-	B label_LOAD_ROOM
-	;[50] 	END IF
+	;[50] 			GOTO restart
 	SRCFILE "Maze.bas",50
-T2:
-	;[51] 	
+	B label_RESTART
+	;[51] 		END IF
 	SRCFILE "Maze.bas",51
-	;[52] 
+T3:
+	;[52] 		GOTO load_room
 	SRCFILE "Maze.bas",52
-	;[53] 
+	B label_LOAD_ROOM
+	;[53] 	END IF
 	SRCFILE "Maze.bas",53
-	;[54] 	IF room = 0 THEN RESTORE room0 : #monster = SPR03 + SPR_GREEN
+T2:
+	;[54] 	
 	SRCFILE "Maze.bas",54
+	;[55] 
+	SRCFILE "Maze.bas",55
+	;[56] 	PLAY OFF
+	SRCFILE "Maze.bas",56
+	CLRR R0
+	CALL _play_music
+	;[57] 
+	SRCFILE "Maze.bas",57
+	;[58] 	IF #score <> 0 THEN
+	SRCFILE "Maze.bas",58
+	MVI var_&SCORE,R0
+	TSTR R0
+	BEQ T6
+	;[59] 		GOSUB effect3
+	SRCFILE "Maze.bas",59
+	CALL label_EFFECT3
+	;[60] 	END IF
+	SRCFILE "Maze.bas",60
+T6:
+	;[61] 
+	SRCFILE "Maze.bas",61
+	;[62] 	PLAY SIMPLE
+	SRCFILE "Maze.bas",62
+	MVII #3,R3
+	MVO R3,_music_mode
+	;[63] 	PLAY TUNE
+	SRCFILE "Maze.bas",63
+	MVII #label_TUNE,R0
+	CALL _play_music
+	;[64] 
+	SRCFILE "Maze.bas",64
+	;[65] 
+	SRCFILE "Maze.bas",65
+	;[66] 	IF room = 0 THEN RESTORE room0 : #monster = SPR03 + SPR_GREEN
+	SRCFILE "Maze.bas",66
 	MVI var_ROOM,R0
 	TSTR R0
-	BNE T6
+	BNE T7
 	MVII #label_ROOM0,R4
 	MVO R4,_read
 	MVII #2077,R0
 	MVO R0,var_&MONSTER
-T6:
-	;[55] 	IF room = 1 THEN RESTORE room1 : #monster = SPR00 + SPR_GREEN
-	SRCFILE "Maze.bas",55
+T7:
+	;[67] 	IF room = 1 THEN RESTORE room1 : #monster = SPR00 + SPR_GREEN
+	SRCFILE "Maze.bas",67
 	MVI var_ROOM,R0
 	CMPI #1,R0
-	BNE T7
+	BNE T8
 	MVII #label_ROOM1,R4
 	MVO R4,_read
 	MVII #2053,R0
 	MVO R0,var_&MONSTER
-T7:
-	;[56] 	IF room = 2 THEN RESTORE room2 : #monster = SPR03 + SPR_GREEN
-	SRCFILE "Maze.bas",56
+T8:
+	;[68] 	IF room = 2 THEN RESTORE room2 : #monster = SPR03 + SPR_GREEN
+	SRCFILE "Maze.bas",68
 	MVI var_ROOM,R0
 	CMPI #2,R0
-	BNE T8
+	BNE T9
 	MVII #label_ROOM2,R4
 	MVO R4,_read
 	MVII #2077,R0
 	MVO R0,var_&MONSTER
-T8:
-	;[57] 	IF room = 3 THEN RESTORE room3 : #monster = SPR00 + SPR_GREEN
-	SRCFILE "Maze.bas",57
+T9:
+	;[69] 	IF room = 3 THEN RESTORE room3 : #monster = SPR00 + SPR_GREEN
+	SRCFILE "Maze.bas",69
 	MVI var_ROOM,R0
 	CMPI #3,R0
-	BNE T9
+	BNE T10
 	MVII #label_ROOM3,R4
 	MVO R4,_read
 	MVII #2053,R0
 	MVO R0,var_&MONSTER
-T9:
-	;[58] 	IF room = 4 THEN RESTORE room4 : #monster = SPR03 + SPR_GREEN
-	SRCFILE "Maze.bas",58
+T10:
+	;[70] 	IF room = 4 THEN RESTORE room4 : #monster = SPR03 + SPR_GREEN
+	SRCFILE "Maze.bas",70
 	MVI var_ROOM,R0
 	CMPI #4,R0
-	BNE T10
+	BNE T11
 	MVII #label_ROOM4,R4
 	MVO R4,_read
 	MVII #2077,R0
 	MVO R0,var_&MONSTER
-T10:
-	;[59] 
-	SRCFILE "Maze.bas",59
-	;[60] 	' Deactivate sprites
-	SRCFILE "Maze.bas",60
-	;[61] 	resetsprite(0)
-	SRCFILE "Maze.bas",61
+T11:
+	;[71] 
+	SRCFILE "Maze.bas",71
+	;[72] 	' Deactivate sprites
+	SRCFILE "Maze.bas",72
+	;[73] 	resetsprite(0)
+	SRCFILE "Maze.bas",73
 	CLRR R0
 	MVO R0,_mobs
 	MVO R0,_mobs+8
 	NOP
 	MVO R0,_mobs+16
-	;[62] 	resetsprite(1)
-	SRCFILE "Maze.bas",62
-	MVO R0,_mobs+1
-	NOP
-	MVO R0,_mobs+9
-	MVO R0,_mobs+17
-	;[63] 	resetsprite(2)
-	SRCFILE "Maze.bas",63
-	NOP
-	MVO R0,_mobs+2
-	MVO R0,_mobs+10
-	NOP
-	MVO R0,_mobs+18
-	;[64] 	resetsprite(3)
-	SRCFILE "Maze.bas",64
-	MVO R0,_mobs+3
-	NOP
-	MVO R0,_mobs+11
-	MVO R0,_mobs+19
-	;[65] 	resetsprite(4)
-	SRCFILE "Maze.bas",65
-	NOP
-	MVO R0,_mobs+4
-	MVO R0,_mobs+12
-	NOP
-	MVO R0,_mobs+20
-	;[66] 	WAIT    ' Wait to reset collision bits
-	SRCFILE "Maze.bas",66
-	CALL _wait
-	;[67] 
-	SRCFILE "Maze.bas",67
-	;[68] 	'
-	SRCFILE "Maze.bas",68
-	;[69] 	' Clean screen
-	SRCFILE "Maze.bas",69
-	;[70] 	'
-	SRCFILE "Maze.bas",70
-	;[71] 	CLS
-	SRCFILE "Maze.bas",71
-	CALL CLRSCR
-	;[72] 
-	SRCFILE "Maze.bas",72
-	;[73] 	'
-	SRCFILE "Maze.bas",73
-	;[74] 	' Draw current score in vertical
+	;[74] 	WAIT    ' Wait to reset collision bits
 	SRCFILE "Maze.bas",74
-	;[75] 	'
+	CALL _wait
+	;[75] 
 	SRCFILE "Maze.bas",75
-	;[76] 	PRINT AT (SCREENPOS(0, 0)), "L"
+	;[76] 	'
 	SRCFILE "Maze.bas",76
+	;[77] 	' Clean screen
+	SRCFILE "Maze.bas",77
+	;[78] 	'
+	SRCFILE "Maze.bas",78
+	;[79] 	CLS
+	SRCFILE "Maze.bas",79
+	CALL CLRSCR
+	;[80] 
+	SRCFILE "Maze.bas",80
+	;[81] 	'
+	SRCFILE "Maze.bas",81
+	;[82] 	' Draw current score in vertical
+	SRCFILE "Maze.bas",82
+	;[83] 	'
+	SRCFILE "Maze.bas",83
+	;[84] 	PRINT AT (SCREENPOS(0, 0)), "L"
+	SRCFILE "Maze.bas",84
 	MVII #512,R0
 	MVO R0,_screen
 	MOVR R0,R4
@@ -3464,8 +3473,8 @@ T10:
 	XOR _color,R0
 	MVO@ R0,R4
 	MVO R4,_screen
-	;[77] 	PRINT AT (SCREENPOS(0, 1)), "V"
-	SRCFILE "Maze.bas",77
+	;[85] 	PRINT AT (SCREENPOS(0, 1)), "V"
+	SRCFILE "Maze.bas",85
 	MVII #532,R0
 	MVO R0,_screen
 	MOVR R0,R4
@@ -3473,8 +3482,8 @@ T10:
 	XOR _color,R0
 	MVO@ R0,R4
 	MVO R4,_screen
-	;[78] 	PRINT AT (SCREENPOS(0, 2)), "L"
-	SRCFILE "Maze.bas",78
+	;[86] 	PRINT AT (SCREENPOS(0, 2)), "L"
+	SRCFILE "Maze.bas",86
 	MVII #552,R0
 	MVO R0,_screen
 	MOVR R0,R4
@@ -3482,14 +3491,14 @@ T10:
 	XOR _color,R0
 	MVO@ R0,R4
 	MVO R4,_screen
-	;[79] 	PRINT AT (SCREENPOS(0, 3)),(#score%10+16)*8+6
-	SRCFILE "Maze.bas",79
+	;[87] 	PRINT AT (SCREENPOS(0, 3)),(#score%10+16)*8+6
+	SRCFILE "Maze.bas",87
 	MVII #572,R0
 	MVO R0,_screen
 	MVI var_&SCORE,R0
-T11:
+T12:
 	SUBI #10,R0
-	BC T11
+	BC T12
 	ADDI #26,R0
 	SLL R0,2
 	ADDR R0,R0
@@ -3497,41 +3506,41 @@ T11:
 	MVI _screen,R4
 	MVO@ R0,R4
 	MVO R4,_screen
-	;[80] 	PRINT COLOR CS_BLUE
-	SRCFILE "Maze.bas",80
+	;[88] 	PRINT COLOR CS_BLUE
+	SRCFILE "Maze.bas",88
 	MVII #1,R0
 	MVO R0,_color
-	;[81] 
-	SRCFILE "Maze.bas",81
-	;[82] 	'
-	SRCFILE "Maze.bas",82
-	;[83] 	' Draw room line per line
-	SRCFILE "Maze.bas",83
-	;[84] 	' Extract bit per bit of value to signal labyrinth value
-	SRCFILE "Maze.bas",84
-	;[85] 	'
-	SRCFILE "Maze.bas",85
-	;[86] 	FOR y = 0 TO 11
-	SRCFILE "Maze.bas",86
+	;[89] 
+	SRCFILE "Maze.bas",89
+	;[90] 	'
+	SRCFILE "Maze.bas",90
+	;[91] 	' Draw room line per line
+	SRCFILE "Maze.bas",91
+	;[92] 	' Extract bit per bit of value to signal labyrinth value
+	SRCFILE "Maze.bas",92
+	;[93] 	'
+	SRCFILE "Maze.bas",93
+	;[94] 	FOR y = 0 TO 11
+	SRCFILE "Maze.bas",94
 	CLRR R0
 	MVO R0,var_Y
-T12:
-	;[87] 		READ #line
-	SRCFILE "Maze.bas",87
+T13:
+	;[95] 		READ #line
+	SRCFILE "Maze.bas",95
 	MVI _read,R4
 	MVI@ R4,R0
 	MVO R4,_read
 	MVO R0,var_&LINE
-	;[88] 		FOR x = 0 TO 15
-	SRCFILE "Maze.bas",88
+	;[96] 		FOR x = 0 TO 15
+	SRCFILE "Maze.bas",96
 	CLRR R0
 	MVO R0,var_X
-T13:
-	;[89] 			IF #line AND $8000 THEN PRINT AT y*20+x+2,"\95"
-	SRCFILE "Maze.bas",89
+T14:
+	;[97] 			IF #line AND $8000 THEN PRINT AT y*20+x+2,"\95"
+	SRCFILE "Maze.bas",97
 	MVI var_&LINE,R0
 	ANDI #32768,R0
-	BEQ T14
+	BEQ T15
 	MVI var_Y,R0
 	MULT R0,R4,20
 	ADD var_X,R0
@@ -3542,219 +3551,234 @@ T13:
 	XOR _color,R0
 	MVO@ R0,R4
 	MVO R4,_screen
-T14:
-	;[90] 			#line = #line * 2
-	SRCFILE "Maze.bas",90
+T15:
+	;[98] 			#line = #line * 2
+	SRCFILE "Maze.bas",98
 	MVI var_&LINE,R0
 	SLL R0,1
 	MVO R0,var_&LINE
-	;[91] 		NEXT x
-	SRCFILE "Maze.bas",91
+	;[99] 		NEXT x
+	SRCFILE "Maze.bas",99
 	MVI var_X,R0
 	INCR R0
 	MVO R0,var_X
 	CMPI #15,R0
-	BLE T13
-	;[92] 	NEXT y
-	SRCFILE "Maze.bas",92
+	BLE T14
+	;[100] 	NEXT y
+	SRCFILE "Maze.bas",100
 	MVI var_Y,R0
 	INCR R0
 	MVO R0,var_Y
 	CMPI #11,R0
-	BLE T12
-	;[93] 
-	SRCFILE "Maze.bas",93
-	;[94] 	'
-	SRCFILE "Maze.bas",94
-	;[95] 	' Setup some random barzacks(deleted)
-	SRCFILE "Maze.bas",95
-	;[96] 	'
-	SRCFILE "Maze.bas",96
-	;[97] 
-	SRCFILE "Maze.bas",97
-	;[98] 	'
-	SRCFILE "Maze.bas",98
-	;[99] 	' Player start
-	SRCFILE "Maze.bas",99
-	;[100] 	'
-	SRCFILE "Maze.bas",100
-	;[101] 	x1 = 32
+	BLE T13
+	;[101] 
 	SRCFILE "Maze.bas",101
+	;[102] 	'
+	SRCFILE "Maze.bas",102
+	;[103] 	' Setup some random barzacks(deleted)
+	SRCFILE "Maze.bas",103
+	;[104] 	'
+	SRCFILE "Maze.bas",104
+	;[105] 
+	SRCFILE "Maze.bas",105
+	;[106] 	'
+	SRCFILE "Maze.bas",106
+	;[107] 	' Player start
+	SRCFILE "Maze.bas",107
+	;[108] 	'
+	SRCFILE "Maze.bas",108
+	;[109] 	x1 = 32
+	SRCFILE "Maze.bas",109
 	MVII #32,R0
 	MVO R0,var_X1
-	;[102] 	y1 = 28
-	SRCFILE "Maze.bas",102
+	;[110] 	y1 = 28
+	SRCFILE "Maze.bas",110
 	MVII #28,R0
 	MVO R0,var_Y1
-	;[103] 
-	SRCFILE "Maze.bas",103
-	;[104] 	room = room + 1
-	SRCFILE "Maze.bas",104
+	;[111] 
+	SRCFILE "Maze.bas",111
+	;[112] 	room = room + 1
+	SRCFILE "Maze.bas",112
 	MVI var_ROOM,R0
 	INCR R0
 	MVO R0,var_ROOM
-	;[105] 	IF room = 5 THEN room = 0
-	SRCFILE "Maze.bas",105
+	;[113] 	IF room = 5 THEN room = 0
+	SRCFILE "Maze.bas",113
 	MVI var_ROOM,R0
 	CMPI #5,R0
-	BNE T15
+	BNE T16
 	CLRR R0
 	MVO R0,var_ROOM
-T15:
-	;[106] 
-	SRCFILE "Maze.bas",106
-	;[107] DIRECTION = 0
-	SRCFILE "Maze.bas",107
+T16:
+	;[114] 
+	SRCFILE "Maze.bas",114
+	;[115] DIRECTION = 0
+	SRCFILE "Maze.bas",115
 	CLRR R0
 	MVO R0,var_DIRECTION
-	;[108] 
-	SRCFILE "Maze.bas",108
-	;[109] loop:
-	SRCFILE "Maze.bas",109
-	; LOOP
-label_LOOP:	;[110] 	WAIT
-	SRCFILE "Maze.bas",110
-	CALL _wait
-	;[111] 
-	SRCFILE "Maze.bas",111
-	;[112] 	'
-	SRCFILE "Maze.bas",112
-	;[113] 	' Update MOBs
-	SRCFILE "Maze.bas",113
-	;[114] 	'
-	SRCFILE "Maze.bas",114
-	;[115] 	
-	SRCFILE "Maze.bas",115
 	;[116] 
 	SRCFILE "Maze.bas",116
-	;[117] 	'
+	;[117] loop:
 	SRCFILE "Maze.bas",117
-	;[118] 	
+	; LOOP
+label_LOOP:	;[118] 	WAIT
 	SRCFILE "Maze.bas",118
-	;[119] 	
+	CALL _wait
+	;[119] 
 	SRCFILE "Maze.bas",119
-	;[120] 
+	;[120] 	'
 	SRCFILE "Maze.bas",120
-	;[121] 	' Check for movement
+	;[121] 	' Update MOBs
 	SRCFILE "Maze.bas",121
-	;[122] 	IF CONT1.UP THEN 
+	;[122] 	'
 	SRCFILE "Maze.bas",122
+	;[123] 	
+	SRCFILE "Maze.bas",123
+	;[124] 
+	SRCFILE "Maze.bas",124
+	;[125] 	'
+	SRCFILE "Maze.bas",125
+	;[126] 	
+	SRCFILE "Maze.bas",126
+	;[127] 	
+	SRCFILE "Maze.bas",127
+	;[128] 
+	SRCFILE "Maze.bas",128
+	;[129] 	' Check for movement
+	SRCFILE "Maze.bas",129
+	;[130] 	IF COL0 AND HIT_BACKGROUND THEN
+	SRCFILE "Maze.bas",130
+	MVI _col0,R0
+	ANDI #256,R0
+	BEQ T17
+	;[131] 		GOSUB effect2
+	SRCFILE "Maze.bas",131
+	CALL label_EFFECT2
+	;[132] 
+	SRCFILE "Maze.bas",132
+	;[133] 	ELSE IF CONT1.UP THEN 
+	SRCFILE "Maze.bas",133
+	B T18
+T17:
 	MVI 511,R0
 	XORI #255,R0
 	ANDI #4,R0
-	BEQ T16
-	;[123] 		IF Y1>0 THEN 
-	SRCFILE "Maze.bas",123
+	BEQ T19
+	;[134] 		IF Y1>0 THEN 
+	SRCFILE "Maze.bas",134
 	MVI var_Y1,R0
 	CMPI #0,R0
-	BLE T17
-	;[124] 			Y1=Y1-1
-	SRCFILE "Maze.bas",124
+	BLE T20
+	;[135] 			Y1=Y1-1
+	SRCFILE "Maze.bas",135
 	DECR R0
 	MVO R0,var_Y1
-	;[125] 			DIRECTION = 1
-	SRCFILE "Maze.bas",125
+	;[136] 			DIRECTION = 1
+	SRCFILE "Maze.bas",136
 	MVII #1,R0
 	MVO R0,var_DIRECTION
-	;[126] 		END IF
-	SRCFILE "Maze.bas",126
-T17:
-	;[127] 	
-	SRCFILE "Maze.bas",127
-	;[128] 	ELSE IF CONT1.DOWN THEN 
-	SRCFILE "Maze.bas",128
-	B T18
-T16:
-	MVI 511,R0
-	XORI #255,R0
-	ANDI #1,R0
-	BEQ T19
-	;[129] 		IF Y1<104 THEN 
-	SRCFILE "Maze.bas",129
-	MVI var_Y1,R0
-	CMPI #104,R0
-	BGE T20
-	;[130] 			Y1=Y1+1
-	SRCFILE "Maze.bas",130
-	INCR R0
-	MVO R0,var_Y1
-	;[131] 			DIRECTION = 2
-	SRCFILE "Maze.bas",131
-	MVII #2,R0
-	MVO R0,var_DIRECTION
-	;[132] 		END IF
-	SRCFILE "Maze.bas",132
+	;[137] 		END IF
+	SRCFILE "Maze.bas",137
 T20:
-	;[133] 	
-	SRCFILE "Maze.bas",133
-	;[134] 		
-	SRCFILE "Maze.bas",134
-	;[135] 	ELSE IF CONT1.LEFT THEN 
-	SRCFILE "Maze.bas",135
+	;[138] 	
+	SRCFILE "Maze.bas",138
+	;[139] 	ELSE IF CONT1.DOWN THEN 
+	SRCFILE "Maze.bas",139
 	B T21
 T19:
 	MVI 511,R0
 	XORI #255,R0
-	ANDI #8,R0
+	ANDI #1,R0
 	BEQ T22
-	;[136] 		IF X1>0 THEN 
-	SRCFILE "Maze.bas",136
-	MVI var_X1,R0
-	CMPI #0,R0
-	BLE T23
-	;[137] 			X1=X1-1
-	SRCFILE "Maze.bas",137
-	DECR R0
-	MVO R0,var_X1
-	;[138] 			DIRECTION = 3
-	SRCFILE "Maze.bas",138
-	MVII #3,R0
-	MVO R0,var_DIRECTION
-	;[139] 		END IF
-	SRCFILE "Maze.bas",139
-T23:
-	;[140] 	
+	;[140] 		IF Y1<104 THEN 
 	SRCFILE "Maze.bas",140
-	;[141] 	ELSE IF CONT1.RIGHT THEN 
+	MVI var_Y1,R0
+	CMPI #104,R0
+	BGE T23
+	;[141] 			Y1=Y1+1
 	SRCFILE "Maze.bas",141
+	INCR R0
+	MVO R0,var_Y1
+	;[142] 			DIRECTION = 2
+	SRCFILE "Maze.bas",142
+	MVII #2,R0
+	MVO R0,var_DIRECTION
+	;[143] 		END IF
+	SRCFILE "Maze.bas",143
+T23:
+	;[144] 	
+	SRCFILE "Maze.bas",144
+	;[145] 		
+	SRCFILE "Maze.bas",145
+	;[146] 	ELSE IF CONT1.LEFT THEN 
+	SRCFILE "Maze.bas",146
 	B T24
 T22:
 	MVI 511,R0
 	XORI #255,R0
-	ANDI #2,R0
+	ANDI #8,R0
 	BEQ T25
-	;[142] 		IF X1<168 THEN 
-	SRCFILE "Maze.bas",142
+	;[147] 		IF X1>0 THEN 
+	SRCFILE "Maze.bas",147
+	MVI var_X1,R0
+	CMPI #0,R0
+	BLE T26
+	;[148] 			X1=X1-1
+	SRCFILE "Maze.bas",148
+	DECR R0
+	MVO R0,var_X1
+	;[149] 			DIRECTION = 3
+	SRCFILE "Maze.bas",149
+	MVII #3,R0
+	MVO R0,var_DIRECTION
+	;[150] 		END IF
+	SRCFILE "Maze.bas",150
+T26:
+	;[151] 	
+	SRCFILE "Maze.bas",151
+	;[152] 	ELSE IF CONT1.RIGHT THEN 
+	SRCFILE "Maze.bas",152
+	B T27
+T25:
+	MVI 511,R0
+	XORI #255,R0
+	ANDI #2,R0
+	BEQ T28
+	;[153] 		IF X1<168 THEN 
+	SRCFILE "Maze.bas",153
 	MVI var_X1,R0
 	CMPI #168,R0
-	BGE T26
-	;[143] 			X1=X1+1
-	SRCFILE "Maze.bas",143
+	BGE T29
+	;[154] 			X1=X1+1
+	SRCFILE "Maze.bas",154
 	INCR R0
 	MVO R0,var_X1
-	;[144] 			DIRECTION = 4
-	SRCFILE "Maze.bas",144
+	;[155] 			DIRECTION = 4
+	SRCFILE "Maze.bas",155
 	MVII #4,R0
 	MVO R0,var_DIRECTION
-	;[145] 		END IF
-	SRCFILE "Maze.bas",145
-T26:
-	;[146] 	END IF
-	SRCFILE "Maze.bas",146
-T25:
-	;[147] 	END IF
-	SRCFILE "Maze.bas",147
+	;[156] 		END IF
+	SRCFILE "Maze.bas",156
+T29:
+	;[157] 	END IF
+	SRCFILE "Maze.bas",157
+T28:
+	;[158] 	END IF
+	SRCFILE "Maze.bas",158
+T27:
+	;[159] 	END IF
+	SRCFILE "Maze.bas",159
 T24:
-	;[148] 	END IF
-	SRCFILE "Maze.bas",148
+	;[160] 	END IF
+	SRCFILE "Maze.bas",160
 T21:
-	;[149] 	END IF
-	SRCFILE "Maze.bas",149
+	;[161] 	END IF
+	SRCFILE "Maze.bas",161
 T18:
-	;[150] 
-	SRCFILE "Maze.bas",150
-	;[151] 	SPRITE 0,X1+HIT+VISIBLE,Y1+ZOOMY1,SPR02 + SPR_RED ' Our hero
-	SRCFILE "Maze.bas",151
+	;[162] 
+	SRCFILE "Maze.bas",162
+	;[163] 	SPRITE 0,X1+HIT+VISIBLE,Y1+ZOOMY1,SPR02 + SPR_RED ' Our hero
+	SRCFILE "Maze.bas",163
 	MVI var_X1,R0
 	ADDI #768,R0
 	MVO R0,_mobs
@@ -3763,72 +3787,74 @@ T18:
 	MVO R0,_mobs+8
 	MVII #2066,R0
 	MVO R0,_mobs+16
-	;[152] 	WAIT
-	SRCFILE "Maze.bas",152
+	;[164] 	WAIT
+	SRCFILE "Maze.bas",164
 	CALL _wait
-	;[153] 
-	SRCFILE "Maze.bas",153
-	;[154] 	IF COL0 AND HIT_BACKGROUND THEN 
-	SRCFILE "Maze.bas",154
+	;[165] 	
+	SRCFILE "Maze.bas",165
+	;[166] 
+	SRCFILE "Maze.bas",166
+	;[167] 	IF COL0 AND HIT_BACKGROUND THEN 
+	SRCFILE "Maze.bas",167
 	MVI _col0,R0
 	ANDI #256,R0
-	BEQ T27
-	;[155] 		IF DIRECTION = 1 THEN
-	SRCFILE "Maze.bas",155
+	BEQ T30
+	;[168] 		IF DIRECTION = 1 THEN
+	SRCFILE "Maze.bas",168
 	MVI var_DIRECTION,R0
 	CMPI #1,R0
-	BNE T28
-	;[156] 			Y1 = Y1 + 1
-	SRCFILE "Maze.bas",156
+	BNE T31
+	;[169] 			Y1 = Y1 + 1
+	SRCFILE "Maze.bas",169
 	MVI var_Y1,R0
 	INCR R0
 	MVO R0,var_Y1
-	;[157] 		END IF
-	SRCFILE "Maze.bas",157
-T28:
-	;[158] 		IF DIRECTION = 2 THEN
-	SRCFILE "Maze.bas",158
+	;[170] 		END IF
+	SRCFILE "Maze.bas",170
+T31:
+	;[171] 		IF DIRECTION = 2 THEN
+	SRCFILE "Maze.bas",171
 	MVI var_DIRECTION,R0
 	CMPI #2,R0
-	BNE T29
-	;[159] 			Y1 = Y1 - 1
-	SRCFILE "Maze.bas",159
+	BNE T32
+	;[172] 			Y1 = Y1 - 1
+	SRCFILE "Maze.bas",172
 	MVI var_Y1,R0
 	DECR R0
 	MVO R0,var_Y1
-	;[160] 		END IF
-	SRCFILE "Maze.bas",160
-T29:
-	;[161] 		IF DIRECTION = 3 THEN
-	SRCFILE "Maze.bas",161
+	;[173] 		END IF
+	SRCFILE "Maze.bas",173
+T32:
+	;[174] 		IF DIRECTION = 3 THEN
+	SRCFILE "Maze.bas",174
 	MVI var_DIRECTION,R0
 	CMPI #3,R0
-	BNE T30
-	;[162] 			X1 = X1 + 1
-	SRCFILE "Maze.bas",162
+	BNE T33
+	;[175] 			X1 = X1 + 1
+	SRCFILE "Maze.bas",175
 	MVI var_X1,R0
 	INCR R0
 	MVO R0,var_X1
-	;[163] 		END IF
-	SRCFILE "Maze.bas",163
-T30:
-	;[164] 		IF DIRECTION = 4 THEN
-	SRCFILE "Maze.bas",164
+	;[176] 		END IF
+	SRCFILE "Maze.bas",176
+T33:
+	;[177] 		IF DIRECTION = 4 THEN
+	SRCFILE "Maze.bas",177
 	MVI var_DIRECTION,R0
 	CMPI #4,R0
-	BNE T31
-	;[165] 			X1 = X1 - 1
-	SRCFILE "Maze.bas",165
+	BNE T34
+	;[178] 			X1 = X1 - 1
+	SRCFILE "Maze.bas",178
 	MVI var_X1,R0
 	DECR R0
 	MVO R0,var_X1
-	;[166] 		END IF
-	SRCFILE "Maze.bas",166
-T31:
-	;[167] 
-	SRCFILE "Maze.bas",167
-	;[168] 		SPRITE 0,X1+HIT+VISIBLE,Y1ZOOMY1,SPR02 + SPR_RED ' Our hero	
-	SRCFILE "Maze.bas",168
+	;[179] 		END IF
+	SRCFILE "Maze.bas",179
+T34:
+	;[180] 
+	SRCFILE "Maze.bas",180
+	;[181] 		SPRITE 0,X1+HIT+VISIBLE,Y1ZOOMY1,SPR02 + SPR_RED ' Our hero	
+	SRCFILE "Maze.bas",181
 	MVI var_X1,R0
 	ADDI #768,R0
 	MVO R0,_mobs
@@ -3836,34 +3862,34 @@ T31:
 	MVO R0,_mobs+8
 	MVII #2066,R0
 	MVO R0,_mobs+16
-	;[169] 		WAIT
-	SRCFILE "Maze.bas",169
+	;[182] 		WAIT
+	SRCFILE "Maze.bas",182
 	CALL _wait
-	;[170] 	END IF
-	SRCFILE "Maze.bas",170
-T27:
-	;[171] 
-	SRCFILE "Maze.bas",171
-	;[172] 
-	SRCFILE "Maze.bas",172
-	;[173] 
-	SRCFILE "Maze.bas",173
-	;[174] 	' Check for change of room
-	SRCFILE "Maze.bas",174
-	;[175] 	IF Y1<8 OR X1<24 OR X1>144 OR Y1>96 THEN 
-	SRCFILE "Maze.bas",175
+	;[183] 	END IF
+	SRCFILE "Maze.bas",183
+T30:
+	;[184] 
+	SRCFILE "Maze.bas",184
+	;[185] 
+	SRCFILE "Maze.bas",185
+	;[186] 
+	SRCFILE "Maze.bas",186
+	;[187] 	' Check for change of room
+	SRCFILE "Maze.bas",187
+	;[188] 	IF Y1<8 OR X1<24 OR X1>144 OR Y1>96 THEN 
+	SRCFILE "Maze.bas",188
 	MVI var_Y1,R0
 	CMPI #8,R0
 	MVII #65535,R0
-	BLT T33
+	BLT T36
 	INCR R0
-T33:
+T36:
 	MVI var_X1,R1
 	CMPI #24,R1
 	MVII #65535,R1
-	BLT T34
+	BLT T37
 	INCR R1
-T34:
+T37:
 	COMR R1
 	ANDR R1,R0
 	COMR R1
@@ -3871,9 +3897,9 @@ T34:
 	MVI var_X1,R1
 	CMPI #144,R1
 	MVII #65535,R1
-	BGT T35
+	BGT T38
 	INCR R1
-T35:
+T38:
 	COMR R1
 	ANDR R1,R0
 	COMR R1
@@ -3881,393 +3907,235 @@ T35:
 	MVI var_Y1,R1
 	CMPI #96,R1
 	MVII #65535,R1
-	BGT T36
+	BGT T39
 	INCR R1
-T36:
+T39:
 	COMR R1
 	ANDR R1,R0
 	COMR R1
 	XORR R1,R0
-	BEQ T32
-	;[176] 		#score=#score+1
-	SRCFILE "Maze.bas",176
+	BEQ T35
+	;[189] 		#score=#score+1
+	SRCFILE "Maze.bas",189
 	MVI var_&SCORE,R0
 	INCR R0
 	MVO R0,var_&SCORE
-	;[177] 		TIMER = 900
-	SRCFILE "Maze.bas",177
+	;[190] 		TIMER = 900
+	SRCFILE "Maze.bas",190
 	MVII #900,R0
 	MVO R0,var_TIMER
-	;[178] 		GOTO load_room
-	SRCFILE "Maze.bas",178
+	;[191] 		GOTO load_room
+	SRCFILE "Maze.bas",191
 	B label_LOAD_ROOM
-	;[179] 	END IF
-	SRCFILE "Maze.bas",179
-T32:
-	;[180] 
-	SRCFILE "Maze.bas",180
-	;[181] 	' Background sound
-	SRCFILE "Maze.bas",181
-	;[182] 
-	SRCFILE "Maze.bas",182
-	;[183] 
-	SRCFILE "Maze.bas",183
-	;[184] 
-	SRCFILE "Maze.bas",184
-	;[185] 
-	SRCFILE "Maze.bas",185
-	;[186] 
-	SRCFILE "Maze.bas",186
-	;[187] 	
-	SRCFILE "Maze.bas",187
-	;[188] 
-	SRCFILE "Maze.bas",188
-	;[189] 	' Barzacks displacement
-	SRCFILE "Maze.bas",189
-	;[190] 	IF FRAME AND 7 THEN GOTO loop
-	SRCFILE "Maze.bas",190
+	;[192] 	END IF
+	SRCFILE "Maze.bas",192
+T35:
+	;[193] 
+	SRCFILE "Maze.bas",193
+	;[194] 
+	SRCFILE "Maze.bas",194
+	;[195] 	' Barzacks displacement
+	SRCFILE "Maze.bas",195
+	;[196] 	IF FRAME AND 7 THEN GOTO loop
+	SRCFILE "Maze.bas",196
 	MVI _frame,R0
 	ANDI #7,R0
 	BNE label_LOOP
-	;[191] 	IF Y2=0 THEN GOTO avoid1
-	SRCFILE "Maze.bas",191
+	;[197] 	IF Y2=0 THEN GOTO avoid1
+	SRCFILE "Maze.bas",197
 	MVI var_Y2,R0
 	TSTR R0
 	BEQ label_AVOID1
-	;[192] 	IF X1<>X2 THEN IF X1<X2 THEN X2=X2-1 ELSE X2=X2+1
-	SRCFILE "Maze.bas",192
+	;[198] 	IF X1<>X2 THEN IF X1<X2 THEN X2=X2-1 ELSE X2=X2+1
+	SRCFILE "Maze.bas",198
 	MVI var_X1,R0
 	CMP var_X2,R0
-	BEQ T39
-	CMP var_X2,R0
-	BGE T40
-	MVI var_X2,R0
-	DECR R0
-	MVO R0,var_X2
-	B T41
-T40:
-	MVI var_X2,R0
-	INCR R0
-	MVO R0,var_X2
-T41:
-T39:
-	;[193] 	IF Y1<>Y2 THEN IF Y1<Y2 THEN Y2=Y2-1 ELSE Y2=Y2+1
-	SRCFILE "Maze.bas",193
-	MVI var_Y1,R0
-	CMP var_Y2,R0
 	BEQ T42
-	CMP var_Y2,R0
+	CMP var_X2,R0
 	BGE T43
-	MVI var_Y2,R0
+	MVI var_X2,R0
 	DECR R0
-	MVO R0,var_Y2
+	MVO R0,var_X2
 	B T44
 T43:
+	MVI var_X2,R0
+	INCR R0
+	MVO R0,var_X2
+T44:
+T42:
+	;[199] 	IF Y1<>Y2 THEN IF Y1<Y2 THEN Y2=Y2-1 ELSE Y2=Y2+1
+	SRCFILE "Maze.bas",199
+	MVI var_Y1,R0
+	CMP var_Y2,R0
+	BEQ T45
+	CMP var_Y2,R0
+	BGE T46
+	MVI var_Y2,R0
+	DECR R0
+	MVO R0,var_Y2
+	B T47
+T46:
 	MVI var_Y2,R0
 	INCR R0
 	MVO R0,var_Y2
-T44:
-T42:
-	;[194] avoid1:
-	SRCFILE "Maze.bas",194
+T47:
+T45:
+	;[200] avoid1:
+	SRCFILE "Maze.bas",200
 	; AVOID1
-label_AVOID1:	;[195] 	IF Y3=0 THEN GOTO avoid2
-	SRCFILE "Maze.bas",195
+label_AVOID1:	;[201] 	IF Y3=0 THEN GOTO avoid2
+	SRCFILE "Maze.bas",201
 	MVI var_Y3,R0
 	TSTR R0
 	BEQ label_AVOID2
-	;[196] 	IF X1<>X3 THEN IF X1<X3 THEN X3=X3-1 ELSE X3=X3+1
-	SRCFILE "Maze.bas",196
+	;[202] 	IF X1<>X3 THEN IF X1<X3 THEN X3=X3-1 ELSE X3=X3+1
+	SRCFILE "Maze.bas",202
 	MVI var_X1,R0
 	CMP var_X3,R0
-	BEQ T46
-	CMP var_X3,R0
-	BGE T47
-	MVI var_X3,R0
-	DECR R0
-	MVO R0,var_X3
-	B T48
-T47:
-	MVI var_X3,R0
-	INCR R0
-	MVO R0,var_X3
-T48:
-T46:
-	;[197] 	IF Y1<>Y3 THEN IF Y1<Y3 THEN Y3=Y3-1 ELSE Y3=Y3+1
-	SRCFILE "Maze.bas",197
-	MVI var_Y1,R0
-	CMP var_Y3,R0
 	BEQ T49
-	CMP var_Y3,R0
+	CMP var_X3,R0
 	BGE T50
-	MVI var_Y3,R0
+	MVI var_X3,R0
 	DECR R0
-	MVO R0,var_Y3
+	MVO R0,var_X3
 	B T51
 T50:
+	MVI var_X3,R0
+	INCR R0
+	MVO R0,var_X3
+T51:
+T49:
+	;[203] 	IF Y1<>Y3 THEN IF Y1<Y3 THEN Y3=Y3-1 ELSE Y3=Y3+1
+	SRCFILE "Maze.bas",203
+	MVI var_Y1,R0
+	CMP var_Y3,R0
+	BEQ T52
+	CMP var_Y3,R0
+	BGE T53
+	MVI var_Y3,R0
+	DECR R0
+	MVO R0,var_Y3
+	B T54
+T53:
 	MVI var_Y3,R0
 	INCR R0
 	MVO R0,var_Y3
-T51:
-T49:
-	;[198] avoid2:
-	SRCFILE "Maze.bas",198
+T54:
+T52:
+	;[204] avoid2:
+	SRCFILE "Maze.bas",204
 	; AVOID2
-label_AVOID2:	;[199] 	IF Y4=0 THEN GOTO avoid3
-	SRCFILE "Maze.bas",199
+label_AVOID2:	;[205] 	IF Y4=0 THEN GOTO avoid3
+	SRCFILE "Maze.bas",205
 	MVI var_Y4,R0
 	TSTR R0
 	BEQ label_AVOID3
-	;[200] 	IF X1<>X4 THEN IF X1<X4 THEN X4=X4-1 ELSE X4=X4+1
-	SRCFILE "Maze.bas",200
+	;[206] 	IF X1<>X4 THEN IF X1<X4 THEN X4=X4-1 ELSE X4=X4+1
+	SRCFILE "Maze.bas",206
 	MVI var_X1,R0
 	CMP var_X4,R0
-	BEQ T53
-	CMP var_X4,R0
-	BGE T54
-	MVI var_X4,R0
-	DECR R0
-	MVO R0,var_X4
-	B T55
-T54:
-	MVI var_X4,R0
-	INCR R0
-	MVO R0,var_X4
-T55:
-T53:
-	;[201] 	IF Y1<>Y4 THEN IF Y1<Y4 THEN Y4=Y4-1 ELSE Y4=Y4+1
-	SRCFILE "Maze.bas",201
-	MVI var_Y1,R0
-	CMP var_Y4,R0
 	BEQ T56
-	CMP var_Y4,R0
+	CMP var_X4,R0
 	BGE T57
-	MVI var_Y4,R0
+	MVI var_X4,R0
 	DECR R0
-	MVO R0,var_Y4
+	MVO R0,var_X4
 	B T58
 T57:
+	MVI var_X4,R0
+	INCR R0
+	MVO R0,var_X4
+T58:
+T56:
+	;[207] 	IF Y1<>Y4 THEN IF Y1<Y4 THEN Y4=Y4-1 ELSE Y4=Y4+1
+	SRCFILE "Maze.bas",207
+	MVI var_Y1,R0
+	CMP var_Y4,R0
+	BEQ T59
+	CMP var_Y4,R0
+	BGE T60
+	MVI var_Y4,R0
+	DECR R0
+	MVO R0,var_Y4
+	B T61
+T60:
 	MVI var_Y4,R0
 	INCR R0
 	MVO R0,var_Y4
-T58:
-T56:
-	;[202] avoid3:
-	SRCFILE "Maze.bas",202
+T61:
+T59:
+	;[208] avoid3:
+	SRCFILE "Maze.bas",208
 	; AVOID3
-label_AVOID3:	;[203] 	IF Y5=0 THEN GOTO avoid4
-	SRCFILE "Maze.bas",203
+label_AVOID3:	;[209] 	IF Y5=0 THEN GOTO avoid4
+	SRCFILE "Maze.bas",209
 	MVI var_Y5,R0
 	TSTR R0
 	BEQ label_AVOID4
-	;[204] 	IF X1<>X5 THEN IF X1<X5 THEN X5=X5-1 ELSE X5=X5+1
-	SRCFILE "Maze.bas",204
+	;[210] 	IF X1<>X5 THEN IF X1<X5 THEN X5=X5-1 ELSE X5=X5+1
+	SRCFILE "Maze.bas",210
 	MVI var_X1,R0
 	CMP var_X5,R0
-	BEQ T60
-	CMP var_X5,R0
-	BGE T61
-	MVI var_X5,R0
-	DECR R0
-	MVO R0,var_X5
-	B T62
-T61:
-	MVI var_X5,R0
-	INCR R0
-	MVO R0,var_X5
-T62:
-T60:
-	;[205] 	IF Y1<>Y5 THEN IF Y1<Y5 THEN Y5=Y5-1 ELSE Y5=Y5+1
-	SRCFILE "Maze.bas",205
-	MVI var_Y1,R0
-	CMP var_Y5,R0
 	BEQ T63
-	CMP var_Y5,R0
+	CMP var_X5,R0
 	BGE T64
-	MVI var_Y5,R0
+	MVI var_X5,R0
 	DECR R0
-	MVO R0,var_Y5
+	MVO R0,var_X5
 	B T65
 T64:
+	MVI var_X5,R0
+	INCR R0
+	MVO R0,var_X5
+T65:
+T63:
+	;[211] 	IF Y1<>Y5 THEN IF Y1<Y5 THEN Y5=Y5-1 ELSE Y5=Y5+1
+	SRCFILE "Maze.bas",211
+	MVI var_Y1,R0
+	CMP var_Y5,R0
+	BEQ T66
+	CMP var_Y5,R0
+	BGE T67
+	MVI var_Y5,R0
+	DECR R0
+	MVO R0,var_Y5
+	B T68
+T67:
 	MVI var_Y5,R0
 	INCR R0
 	MVO R0,var_Y5
-T65:
-T63:
-	;[206] avoid4:
-	SRCFILE "Maze.bas",206
-	; AVOID4
-label_AVOID4:	;[207] 	GOTO loop
-	SRCFILE "Maze.bas",207
-	B label_LOOP
-	;[208] 
-	SRCFILE "Maze.bas",208
-	;[209] touched:
-	SRCFILE "Maze.bas",209
-	; TOUCHED
-label_TOUCHED:	;[210] 
-	SRCFILE "Maze.bas",210
-	;[211] 	FOR color = 0 TO 31
-	SRCFILE "Maze.bas",211
-	CLRR R0
-	MVO R0,var_COLOR
+T68:
 T66:
-	;[212] 		WAIT
+	;[212] avoid4:
 	SRCFILE "Maze.bas",212
-	CALL _wait
-	;[213] 		SPRITE 0,X1+HIT+VISIBLE,Y1+ZOOMY2,SPR02+(color AND SPR_WHITE) ' Our hero
+	; AVOID4
+label_AVOID4:	;[213] 	GOTO loop
 	SRCFILE "Maze.bas",213
-	MVI var_X1,R0
-	ADDI #768,R0
-	MVO R0,_mobs
-	MVI var_Y1,R0
-	ADDI #256,R0
-	MVO R0,_mobs+8
-	MVI var_COLOR,R0
-	ANDI #7,R0
-	ADDI #2064,R0
-	MVO R0,_mobs+16
-	;[214] 		SOUND 0,(color and 7)*32+32,15
+	B label_LOOP
+	;[214] 
 	SRCFILE "Maze.bas",214
-	MVI var_COLOR,R0
-	ANDI #7,R0
-	SLL R0,2
-	SLL R0,2
-	ADDR R0,R0
-	ADDI #32,R0
-	MVO R0,496
-	SWAP R0
-	MVO R0,500
-	MVII #15,R0
-	MVO R0,507
-	;[215] 		SOUND 1,(color and 7)*36+32,15
+	;[215] 
 	SRCFILE "Maze.bas",215
-	MVI var_COLOR,R0
-	ANDI #7,R0
-	MULT R0,R4,36
-	ADDI #32,R0
-	MVO R0,497
-	SWAP R0
-	MVO R0,501
-	MVII #15,R0
-	MVO R0,508
-	;[216] 		SOUND 2,(color and 7)*40+32,15
+	;[216] barzack:	PROCEDURE
 	SRCFILE "Maze.bas",216
-	MVI var_COLOR,R0
-	ANDI #7,R0
-	MULT R0,R4,40
-	ADDI #32,R0
-	MVO R0,498
-	SWAP R0
-	MVO R0,502
-	MVII #15,R0
-	MVO R0,509
-	;[217] 	NEXT color
-	SRCFILE "Maze.bas",217
-	MVI var_COLOR,R0
-	INCR R0
-	MVO R0,var_COLOR
-	CMPI #31,R0
-	BLE T66
-	;[218] 	SOUND 0,,0
-	SRCFILE "Maze.bas",218
-	CLRR R0
-	MVO R0,507
-	;[219] 	SOUND 1,,0
-	SRCFILE "Maze.bas",219
-	MVO R0,508
-	;[220] 	SOUND 2,,0
-	SRCFILE "Maze.bas",220
-	NOP
-	MVO R0,509
-	;[221] 
-	SRCFILE "Maze.bas",221
-	;[222] 	FOR loop = 0 to 100
-	SRCFILE "Maze.bas",222
-	MVO R0,var_LOOP
-T67:
-	;[223] 		WAIT
-	SRCFILE "Maze.bas",223
-	CALL _wait
-	;[224] 	NEXT loop
-	SRCFILE "Maze.bas",224
-	MVI var_LOOP,R0
-	INCR R0
-	MVO R0,var_LOOP
-	CMPI #100,R0
-	BLE T67
-	;[225] 
-	SRCFILE "Maze.bas",225
-	;[226] 	' Deactivate sprites
-	SRCFILE "Maze.bas",226
-	;[227] 	resetsprite(0)
-	SRCFILE "Maze.bas",227
-	CLRR R0
-	MVO R0,_mobs
-	MVO R0,_mobs+8
-	NOP
-	MVO R0,_mobs+16
-	;[228] 	resetsprite(1)
-	SRCFILE "Maze.bas",228
-	MVO R0,_mobs+1
-	NOP
-	MVO R0,_mobs+9
-	MVO R0,_mobs+17
-	;[229] 	resetsprite(2)
-	SRCFILE "Maze.bas",229
-	NOP
-	MVO R0,_mobs+2
-	MVO R0,_mobs+10
-	NOP
-	MVO R0,_mobs+18
-	;[230] 	resetsprite(3)
-	SRCFILE "Maze.bas",230
-	MVO R0,_mobs+3
-	NOP
-	MVO R0,_mobs+11
-	MVO R0,_mobs+19
-	;[231] 	resetsprite(4)
-	SRCFILE "Maze.bas",231
-	NOP
-	MVO R0,_mobs+4
-	MVO R0,_mobs+12
-	NOP
-	MVO R0,_mobs+20
-	;[232] 
-	SRCFILE "Maze.bas",232
-	;[233] 	GOTO restart
-	SRCFILE "Maze.bas",233
-	B label_RESTART
-	;[234] 
-	SRCFILE "Maze.bas",234
-	;[235] 	'
-	SRCFILE "Maze.bas",235
-	;[236] 	' Locate a free space for a barzack
-	SRCFILE "Maze.bas",236
-	;[237] 	' Input: y = Screen row
-	SRCFILE "Maze.bas",237
-	;[238] 	'
-	SRCFILE "Maze.bas",238
-	;[239] barzack:	PROCEDURE
-	SRCFILE "Maze.bas",239
 	; BARZACK
 label_BARZACK:	PROC
 	BEGIN
-	;[240] 
-	SRCFILE "Maze.bas",240
-	;[241] 	DO
-	SRCFILE "Maze.bas",241
-T68:
-	;[242] 		WAIT
-	SRCFILE "Maze.bas",242
+	;[217] 
+	SRCFILE "Maze.bas",217
+	;[218] 	DO
+	SRCFILE "Maze.bas",218
+T69:
+	;[219] 		WAIT
+	SRCFILE "Maze.bas",219
 	CALL _wait
-	;[243] 		X = RAND % 16
-	SRCFILE "Maze.bas",243
+	;[220] 		X = RAND % 16
+	SRCFILE "Maze.bas",220
 	MVI _rand,R0
 	ANDI #15,R0
 	MVO R0,var_X
-	;[244] 	LOOP WHILE #BACKTAB(Y * BACKGROUND_COLUMNS + X + 2)
-	SRCFILE "Maze.bas",244
+	;[221] 	LOOP WHILE #BACKTAB(Y * BACKGROUND_COLUMNS + X + 2)
+	SRCFILE "Maze.bas",221
 	MVII #Q2+2,R1
 	MVI var_Y,R2
 	MULT R2,R4,20
@@ -4275,210 +4143,210 @@ T68:
 	ADDR R2,R1
 	MVI@ R1,R0
 	TSTR R0
-	BEQ T70
-	B T68
-T70:
-	;[245] 
-	SRCFILE "Maze.bas",245
-	;[246] 	result = (x + 2) * 8 + 8
-	SRCFILE "Maze.bas",246
+	BEQ T71
+	B T69
+T71:
+	;[222] 
+	SRCFILE "Maze.bas",222
+	;[223] 	result = (x + 2) * 8 + 8
+	SRCFILE "Maze.bas",223
 	MVI var_X,R0
 	ADDI #2,R0
 	SLL R0,2
 	ADDR R0,R0
 	ADDI #8,R0
 	MVO R0,var_RESULT
-	;[247] 
-	SRCFILE "Maze.bas",247
-	;[248] 	END
-	SRCFILE "Maze.bas",248
+	;[224] 
+	SRCFILE "Maze.bas",224
+	;[225] 	END
+	SRCFILE "Maze.bas",225
 	RETURN
 	ENDP
-	;[249] 
-	SRCFILE "Maze.bas",249
-	;[250] 	'
-	SRCFILE "Maze.bas",250
-	;[251] 	' Definition of rooms
-	SRCFILE "Maze.bas",251
-	;[252] 	'
-	SRCFILE "Maze.bas",252
-	;[253] 	' Uses binary numbers to form a 16-bit value
-	SRCFILE "Maze.bas",253
-	;[254] 	' (the maximum fitting a DATA value)
-	SRCFILE "Maze.bas",254
-	;[255] 	'
-	SRCFILE "Maze.bas",255
-	;[256] FRAME_UPDATE:	PROCEDURE
-	SRCFILE "Maze.bas",256
+	;[226] 
+	SRCFILE "Maze.bas",226
+	;[227] 	'
+	SRCFILE "Maze.bas",227
+	;[228] 	' Definition of rooms
+	SRCFILE "Maze.bas",228
+	;[229] 	'
+	SRCFILE "Maze.bas",229
+	;[230] 	' Uses binary numbers to form a 16-bit value
+	SRCFILE "Maze.bas",230
+	;[231] 	' (the maximum fitting a DATA value)
+	SRCFILE "Maze.bas",231
+	;[232] 	'
+	SRCFILE "Maze.bas",232
+	;[233] FRAME_UPDATE:	PROCEDURE
+	SRCFILE "Maze.bas",233
 	; FRAME_UPDATE
 label_FRAME_UPDATE:	PROC
 	BEGIN
-	;[257] 
-	SRCFILE "Maze.bas",257
-	;[258] 		IF TIMER > 0 THEN
-	SRCFILE "Maze.bas",258
+	;[234] 
+	SRCFILE "Maze.bas",234
+	;[235] 		IF TIMER > 0 THEN
+	SRCFILE "Maze.bas",235
 	MVI var_TIMER,R0
 	CMPI #0,R0
-	BLE T71
-	;[259] 			TIMER = TIMER - 1
-	SRCFILE "Maze.bas",259
+	BLE T72
+	;[236] 			TIMER = TIMER - 1
+	SRCFILE "Maze.bas",236
 	DECR R0
 	MVO R0,var_TIMER
-	;[260] 		END IF
-	SRCFILE "Maze.bas",260
-T71:
-	;[261] 
-	SRCFILE "Maze.bas",261
-	;[262] 		END
-	SRCFILE "Maze.bas",262
+	;[237] 		END IF
+	SRCFILE "Maze.bas",237
+T72:
+	;[238] 
+	SRCFILE "Maze.bas",238
+	;[239] 		END
+	SRCFILE "Maze.bas",239
 	RETURN
 	ENDP
-	;[263] 
-	SRCFILE "Maze.bas",263
-	;[264] reset_sound:	PROCEDURE
-	SRCFILE "Maze.bas",264
+	;[240] 
+	SRCFILE "Maze.bas",240
+	;[241] reset_sound:	PROCEDURE
+	SRCFILE "Maze.bas",241
 	; RESET_SOUND
 label_RESET_SOUND:	PROC
 	BEGIN
-	;[265] 	SOUND 0,1,0
-	SRCFILE "Maze.bas",265
+	;[242] 	SOUND 0,1,0
+	SRCFILE "Maze.bas",242
 	MVII #1,R0
 	MVO R0,496
 	SWAP R0
 	MVO R0,500
 	CLRR R0
 	MVO R0,507
-	;[266] 	SOUND 1,1,0
-	SRCFILE "Maze.bas",266
+	;[243] 	SOUND 1,1,0
+	SRCFILE "Maze.bas",243
 	MVII #1,R0
 	MVO R0,497
 	SWAP R0
 	MVO R0,501
 	CLRR R0
 	MVO R0,508
-	;[267] 	SOUND 2,1,0
-	SRCFILE "Maze.bas",267
+	;[244] 	SOUND 2,1,0
+	SRCFILE "Maze.bas",244
 	MVII #1,R0
 	MVO R0,498
 	SWAP R0
 	MVO R0,502
 	CLRR R0
 	MVO R0,509
-	;[268] 	SOUND 4,,$38
-	SRCFILE "Maze.bas",268
+	;[245] 	SOUND 4,,$38
+	SRCFILE "Maze.bas",245
 	MVII #56,R0
 	MVO R0,504
-	;[269] 	RETURN
-	SRCFILE "Maze.bas",269
+	;[246] 	RETURN
+	SRCFILE "Maze.bas",246
 	RETURN
-	;[270] 	END
-	SRCFILE "Maze.bas",270
+	;[247] 	END
+	SRCFILE "Maze.bas",247
 	ENDP
-	;[271] 
-	SRCFILE "Maze.bas",271
-	;[272] effect1:	PROCEDURE
-	SRCFILE "Maze.bas",272
+	;[248] 
+	SRCFILE "Maze.bas",248
+	;[249] effect1:	PROCEDURE
+	SRCFILE "Maze.bas",249
 	; EFFECT1
 label_EFFECT1:	PROC
 	BEGIN
-	;[273] 	GOSUB reset_sound
-	SRCFILE "Maze.bas",273
+	;[250] 	GOSUB reset_sound
+	SRCFILE "Maze.bas",250
 	CALL label_RESET_SOUND
-	;[274] 	FOR A = 1 TO 4
-	SRCFILE "Maze.bas",274
+	;[251] 	FOR A = 1 TO 4
+	SRCFILE "Maze.bas",251
 	MVII #1,R0
 	MVO R0,var_A
-T72:
-	;[275]         IF A=1 THEN #C=477
-	SRCFILE "Maze.bas",275
+T73:
+	;[252]         IF A=1 THEN #C=700
+	SRCFILE "Maze.bas",252
 	MVI var_A,R0
 	CMPI #1,R0
-	BNE T73
-	MVII #477,R0
-	MVO R0,var_&C
-T73:
-	;[276]         IF A=2 THEN #C=379
-	SRCFILE "Maze.bas",276
-	MVI var_A,R0
-	CMPI #2,R0
 	BNE T74
-	MVII #379,R0
+	MVII #700,R0
 	MVO R0,var_&C
 T74:
-	;[277]         IF A=3 THEN #C=319
-	SRCFILE "Maze.bas",277
+	;[253]         IF A=2 THEN #C=750
+	SRCFILE "Maze.bas",253
 	MVI var_A,R0
-	CMPI #3,R0
+	CMPI #2,R0
 	BNE T75
-	MVII #319,R0
+	MVII #750,R0
 	MVO R0,var_&C
 T75:
-	;[278]         IF A=4 THEN #C=477
-	SRCFILE "Maze.bas",278
+	;[254]         IF A=3 THEN #C=800
+	SRCFILE "Maze.bas",254
 	MVI var_A,R0
-	CMPI #4,R0
+	CMPI #3,R0
 	BNE T76
-	MVII #477,R0
+	MVII #800,R0
 	MVO R0,var_&C
 T76:
-	;[279]         IF A=5 THEN #C=379
-	SRCFILE "Maze.bas",279
+	;[255]         IF A=4 THEN #C=850
+	SRCFILE "Maze.bas",255
 	MVI var_A,R0
-	CMPI #5,R0
+	CMPI #4,R0
 	BNE T77
-	MVII #379,R0
+	MVII #850,R0
 	MVO R0,var_&C
 T77:
-	;[280]         IF A=6 THEN #C=319
-	SRCFILE "Maze.bas",280
+	;[256]         IF A=5 THEN #C=379
+	SRCFILE "Maze.bas",256
 	MVI var_A,R0
-	CMPI #6,R0
+	CMPI #5,R0
 	BNE T78
-	MVII #319,R0
+	MVII #379,R0
 	MVO R0,var_&C
 T78:
-	;[281]         IF A=7 THEN #C=451
-	SRCFILE "Maze.bas",281
+	;[257]         IF A=6 THEN #C=319
+	SRCFILE "Maze.bas",257
 	MVI var_A,R0
-	CMPI #7,R0
+	CMPI #6,R0
 	BNE T79
-	MVII #451,R0
+	MVII #319,R0
 	MVO R0,var_&C
 T79:
-	;[282]         IF A=8 THEN #C=358
-	SRCFILE "Maze.bas",282
+	;[258]         IF A=7 THEN #C=451
+	SRCFILE "Maze.bas",258
 	MVI var_A,R0
-	CMPI #8,R0
+	CMPI #7,R0
 	BNE T80
-	MVII #358,R0
+	MVII #451,R0
 	MVO R0,var_&C
 T80:
-	;[283]         IF A=9 THEN #C=301
-	SRCFILE "Maze.bas",283
+	;[259]         IF A=8 THEN #C=358
+	SRCFILE "Maze.bas",259
 	MVI var_A,R0
-	CMPI #9,R0
+	CMPI #8,R0
 	BNE T81
-	MVII #301,R0
+	MVII #358,R0
 	MVO R0,var_&C
 T81:
-	;[284]         IF A=10 THEN #C=239
-	SRCFILE "Maze.bas",284
+	;[260]         IF A=9 THEN #C=301
+	SRCFILE "Maze.bas",260
 	MVI var_A,R0
-	CMPI #10,R0
+	CMPI #9,R0
 	BNE T82
-	MVII #239,R0
+	MVII #301,R0
 	MVO R0,var_&C
 T82:
-	;[285] 	SOUND 0,#C,PSG_ENVELOPE_ENABLE
-	SRCFILE "Maze.bas",285
+	;[261]         IF A=10 THEN #C=239
+	SRCFILE "Maze.bas",261
+	MVI var_A,R0
+	CMPI #10,R0
+	BNE T83
+	MVII #239,R0
+	MVO R0,var_&C
+T83:
+	;[262] 	SOUND 0,#C,PSG_ENVELOPE_ENABLE
+	SRCFILE "Maze.bas",262
 	MVI var_&C,R0
 	MVO R0,496
 	SWAP R0
 	MVO R0,500
 	MVII #48,R0
 	MVO R0,507
-	;[286] 	SOUND 1,(#C+1)/2,PSG_ENVELOPE_ENABLE
-	SRCFILE "Maze.bas",286
+	;[263] 	SOUND 1,(#C+1)/2,PSG_ENVELOPE_ENABLE
+	SRCFILE "Maze.bas",263
 	MVI var_&C,R0
 	INCR R0
 	SLR R0,1
@@ -4487,8 +4355,8 @@ T82:
 	MVO R0,501
 	MVII #48,R0
 	MVO R0,508
-	;[287] 	SOUND 2,#C*2,PSG_ENVELOPE_ENABLE
-	SRCFILE "Maze.bas",287
+	;[264] 	SOUND 2,#C*2,PSG_ENVELOPE_ENABLE
+	SRCFILE "Maze.bas",264
 	MVI var_&C,R0
 	SLL R0,1
 	MVO R0,498
@@ -4496,640 +4364,948 @@ T82:
 	MVO R0,502
 	MVII #48,R0
 	MVO R0,509
-	;[288] 	SOUND 3,6000,PSG_ENVELOPE_SINGLE_SHOT_RAMP_DOWN_AND_OFF	' Slow decay, single shot \______
-	SRCFILE "Maze.bas",288
+	;[265] 	SOUND 3,6000,PSG_ENVELOPE_SINGLE_SHOT_RAMP_DOWN_AND_OFF	' Slow decay, single shot \______
+	SRCFILE "Maze.bas",265
 	MVII #6000,R0
 	MVO R0,499
 	SWAP R0
 	MVO R0,503
 	CLRR R0
 	MVO R0,506
-	;[289] 	FOR C = 1 TO 30:WAIT:NEXT C
-	SRCFILE "Maze.bas",289
+	;[266] 	FOR C = 1 TO 30:WAIT:NEXT C
+	SRCFILE "Maze.bas",266
 	MVII #1,R0
 	MVO R0,var_C
-T83:
+T84:
 	CALL _wait
 	MVI var_C,R0
 	INCR R0
 	MVO R0,var_C
 	CMPI #30,R0
-	BLE T83
-	;[290] 	NEXT A
-	SRCFILE "Maze.bas",290
+	BLE T84
+	;[267] 	NEXT A
+	SRCFILE "Maze.bas",267
 	MVI var_A,R0
 	INCR R0
 	MVO R0,var_A
 	CMPI #4,R0
-	BLE T72
-	;[291] 	RETURN
-	SRCFILE "Maze.bas",291
+	BLE T73
+	;[268] 	RETURN
+	SRCFILE "Maze.bas",268
 	RETURN
-	;[292] 	END
-	SRCFILE "Maze.bas",292
+	;[269] 	END
+	SRCFILE "Maze.bas",269
 	ENDP
-	;[293] 
+	;[270] 
+	SRCFILE "Maze.bas",270
+	;[271] effect2:	PROCEDURE
+	SRCFILE "Maze.bas",271
+	; EFFECT2
+label_EFFECT2:	PROC
+	BEGIN
+	;[272] 	GOSUB reset_sound
+	SRCFILE "Maze.bas",272
+	CALL label_RESET_SOUND
+	;[273] 	FOR A = 5 TO 5
+	SRCFILE "Maze.bas",273
+	MVII #5,R0
+	MVO R0,var_A
+T85:
+	;[274]         IF A=1 THEN #C=477
+	SRCFILE "Maze.bas",274
+	MVI var_A,R0
+	CMPI #1,R0
+	BNE T86
+	MVII #477,R0
+	MVO R0,var_&C
+T86:
+	;[275]         IF A=2 THEN #C=379
+	SRCFILE "Maze.bas",275
+	MVI var_A,R0
+	CMPI #2,R0
+	BNE T87
+	MVII #379,R0
+	MVO R0,var_&C
+T87:
+	;[276]         IF A=3 THEN #C=319
+	SRCFILE "Maze.bas",276
+	MVI var_A,R0
+	CMPI #3,R0
+	BNE T88
+	MVII #319,R0
+	MVO R0,var_&C
+T88:
+	;[277]         IF A=4 THEN #C=477
+	SRCFILE "Maze.bas",277
+	MVI var_A,R0
+	CMPI #4,R0
+	BNE T89
+	MVII #477,R0
+	MVO R0,var_&C
+T89:
+	;[278]         IF A=5 THEN #C=379
+	SRCFILE "Maze.bas",278
+	MVI var_A,R0
+	CMPI #5,R0
+	BNE T90
+	MVII #379,R0
+	MVO R0,var_&C
+T90:
+	;[279]         IF A=6 THEN #C=319
+	SRCFILE "Maze.bas",279
+	MVI var_A,R0
+	CMPI #6,R0
+	BNE T91
+	MVII #319,R0
+	MVO R0,var_&C
+T91:
+	;[280]         IF A=7 THEN #C=451
+	SRCFILE "Maze.bas",280
+	MVI var_A,R0
+	CMPI #7,R0
+	BNE T92
+	MVII #451,R0
+	MVO R0,var_&C
+T92:
+	;[281]         IF A=8 THEN #C=358
+	SRCFILE "Maze.bas",281
+	MVI var_A,R0
+	CMPI #8,R0
+	BNE T93
+	MVII #358,R0
+	MVO R0,var_&C
+T93:
+	;[282]         IF A=9 THEN #C=301
+	SRCFILE "Maze.bas",282
+	MVI var_A,R0
+	CMPI #9,R0
+	BNE T94
+	MVII #301,R0
+	MVO R0,var_&C
+T94:
+	;[283]         IF A=10 THEN #C=239
+	SRCFILE "Maze.bas",283
+	MVI var_A,R0
+	CMPI #10,R0
+	BNE T95
+	MVII #239,R0
+	MVO R0,var_&C
+T95:
+	;[284] 	SOUND 0,#C,PSG_ENVELOPE_ENABLE
+	SRCFILE "Maze.bas",284
+	MVI var_&C,R0
+	MVO R0,496
+	SWAP R0
+	MVO R0,500
+	MVII #48,R0
+	MVO R0,507
+	;[285] 	SOUND 1,(#C+1)/2,PSG_ENVELOPE_ENABLE
+	SRCFILE "Maze.bas",285
+	MVI var_&C,R0
+	INCR R0
+	SLR R0,1
+	MVO R0,497
+	SWAP R0
+	MVO R0,501
+	MVII #48,R0
+	MVO R0,508
+	;[286] 	SOUND 2,#C*2,PSG_ENVELOPE_ENABLE
+	SRCFILE "Maze.bas",286
+	MVI var_&C,R0
+	SLL R0,1
+	MVO R0,498
+	SWAP R0
+	MVO R0,502
+	MVII #48,R0
+	MVO R0,509
+	;[287] 	SOUND 3,6000,PSG_ENVELOPE_SINGLE_SHOT_RAMP_DOWN_AND_OFF	' Slow decay, single shot \______
+	SRCFILE "Maze.bas",287
+	MVII #6000,R0
+	MVO R0,499
+	SWAP R0
+	MVO R0,503
+	CLRR R0
+	MVO R0,506
+	;[288] 	FOR C = 1 TO 30:WAIT:NEXT C
+	SRCFILE "Maze.bas",288
+	MVII #1,R0
+	MVO R0,var_C
+T96:
+	CALL _wait
+	MVI var_C,R0
+	INCR R0
+	MVO R0,var_C
+	CMPI #30,R0
+	BLE T96
+	;[289] 	NEXT A
+	SRCFILE "Maze.bas",289
+	MVI var_A,R0
+	INCR R0
+	MVO R0,var_A
+	CMPI #5,R0
+	BLE T85
+	;[290] 	RETURN
+	SRCFILE "Maze.bas",290
+	RETURN
+	;[291] 	END
+	SRCFILE "Maze.bas",291
+	ENDP
+	;[292] 
+	SRCFILE "Maze.bas",292
+	;[293] effect3:	PROCEDURE
 	SRCFILE "Maze.bas",293
-	;[294] 
+	; EFFECT3
+label_EFFECT3:	PROC
+	BEGIN
+	;[294] 	GOSUB reset_sound
 	SRCFILE "Maze.bas",294
-	;[295] tune: DATA 5
+	CALL label_RESET_SOUND
+	;[295] 	FOR A = 8 TO 9
 	SRCFILE "Maze.bas",295
+	MVII #8,R0
+	MVO R0,var_A
+T97:
+	;[296]         IF A=1 THEN #C=477
+	SRCFILE "Maze.bas",296
+	MVI var_A,R0
+	CMPI #1,R0
+	BNE T98
+	MVII #477,R0
+	MVO R0,var_&C
+T98:
+	;[297]         IF A=2 THEN #C=379
+	SRCFILE "Maze.bas",297
+	MVI var_A,R0
+	CMPI #2,R0
+	BNE T99
+	MVII #379,R0
+	MVO R0,var_&C
+T99:
+	;[298]         IF A=3 THEN #C=319
+	SRCFILE "Maze.bas",298
+	MVI var_A,R0
+	CMPI #3,R0
+	BNE T100
+	MVII #319,R0
+	MVO R0,var_&C
+T100:
+	;[299]         IF A=4 THEN #C=477
+	SRCFILE "Maze.bas",299
+	MVI var_A,R0
+	CMPI #4,R0
+	BNE T101
+	MVII #477,R0
+	MVO R0,var_&C
+T101:
+	;[300]         IF A=5 THEN #C=379
+	SRCFILE "Maze.bas",300
+	MVI var_A,R0
+	CMPI #5,R0
+	BNE T102
+	MVII #379,R0
+	MVO R0,var_&C
+T102:
+	;[301]         IF A=6 THEN #C=319
+	SRCFILE "Maze.bas",301
+	MVI var_A,R0
+	CMPI #6,R0
+	BNE T103
+	MVII #319,R0
+	MVO R0,var_&C
+T103:
+	;[302]         IF A=7 THEN #C=451
+	SRCFILE "Maze.bas",302
+	MVI var_A,R0
+	CMPI #7,R0
+	BNE T104
+	MVII #451,R0
+	MVO R0,var_&C
+T104:
+	;[303]         IF A=8 THEN #C=200
+	SRCFILE "Maze.bas",303
+	MVI var_A,R0
+	CMPI #8,R0
+	BNE T105
+	MVII #200,R0
+	MVO R0,var_&C
+T105:
+	;[304]         IF A=9 THEN #C=100
+	SRCFILE "Maze.bas",304
+	MVI var_A,R0
+	CMPI #9,R0
+	BNE T106
+	MVII #100,R0
+	MVO R0,var_&C
+T106:
+	;[305]         IF A=10 THEN #C=239
+	SRCFILE "Maze.bas",305
+	MVI var_A,R0
+	CMPI #10,R0
+	BNE T107
+	MVII #239,R0
+	MVO R0,var_&C
+T107:
+	;[306] 	SOUND 0,#C,PSG_ENVELOPE_ENABLE
+	SRCFILE "Maze.bas",306
+	MVI var_&C,R0
+	MVO R0,496
+	SWAP R0
+	MVO R0,500
+	MVII #48,R0
+	MVO R0,507
+	;[307] 	SOUND 1,(#C+1)/2,PSG_ENVELOPE_ENABLE
+	SRCFILE "Maze.bas",307
+	MVI var_&C,R0
+	INCR R0
+	SLR R0,1
+	MVO R0,497
+	SWAP R0
+	MVO R0,501
+	MVII #48,R0
+	MVO R0,508
+	;[308] 	SOUND 2,#C*2,PSG_ENVELOPE_ENABLE
+	SRCFILE "Maze.bas",308
+	MVI var_&C,R0
+	SLL R0,1
+	MVO R0,498
+	SWAP R0
+	MVO R0,502
+	MVII #48,R0
+	MVO R0,509
+	;[309] 	SOUND 3,6000,PSG_ENVELOPE_SINGLE_SHOT_RAMP_DOWN_AND_OFF	' Slow decay, single shot \______
+	SRCFILE "Maze.bas",309
+	MVII #6000,R0
+	MVO R0,499
+	SWAP R0
+	MVO R0,503
+	CLRR R0
+	MVO R0,506
+	;[310] 	FOR C = 1 TO 30:WAIT:NEXT C
+	SRCFILE "Maze.bas",310
+	MVII #1,R0
+	MVO R0,var_C
+T108:
+	CALL _wait
+	MVI var_C,R0
+	INCR R0
+	MVO R0,var_C
+	CMPI #30,R0
+	BLE T108
+	;[311] 	NEXT A
+	SRCFILE "Maze.bas",311
+	MVI var_A,R0
+	INCR R0
+	MVO R0,var_A
+	CMPI #9,R0
+	BLE T97
+	;[312] 	RETURN
+	SRCFILE "Maze.bas",312
+	RETURN
+	;[313] 	END
+	SRCFILE "Maze.bas",313
+	ENDP
+	;[314] 
+	SRCFILE "Maze.bas",314
+	;[315] 
+	SRCFILE "Maze.bas",315
+	;[316] tune: DATA 5
+	SRCFILE "Maze.bas",316
 	; TUNE
 label_TUNE:		DECLE 5
-	;[296] 	MUSIC G5#Y,C3#,-,M1
-	SRCFILE "Maze.bas",296
-	DECLE 3757,256
-	;[297] 	MUSIC S,S,-,M2
-	SRCFILE "Maze.bas",297
-	DECLE 16191,512
-	;[298] 	MUSIC F5#,G3#,-,M2
-	SRCFILE "Maze.bas",298
-	DECLE 5547,512
-	;[299] 	MUSIC S,S,-,M2
-	SRCFILE "Maze.bas",299
-	DECLE 16191,512
-	;[300] 	MUSIC E5,C3#,-,M1
-	SRCFILE "Maze.bas",300
-	DECLE 3753,256
-	;[301] 	MUSIC S,S,-,M2
-	SRCFILE "Maze.bas",301
-	DECLE 16191,512
-	;[302] 	MUSIC D5#,G3#,-,M2
-	SRCFILE "Maze.bas",302
-	DECLE 5544,512
-	;[303] 	MUSIC S,S,-,M2
-	SRCFILE "Maze.bas",303
-	DECLE 16191,512
-	;[304] 	MUSIC E5,C3#,-,M1
-	SRCFILE "Maze.bas",304
-	DECLE 3753,256
-	;[305] 	MUSIC S,S,-,M2
-	SRCFILE "Maze.bas",305
-	DECLE 16191,512
-	;[306] 	MUSIC F5#,G3#,-,M2
-	SRCFILE "Maze.bas",306
-	DECLE 5547,512
-	;[307] 	MUSIC S,S,-,M2
-	SRCFILE "Maze.bas",307
-	DECLE 16191,512
-	;[308] 	MUSIC G5#,C3#,-,M1
-	SRCFILE "Maze.bas",308
-	DECLE 3757,256
-	;[309] 	MUSIC S,S,-,M2
-	SRCFILE "Maze.bas",309
-	DECLE 16191,512
-	;[310] 	MUSIC S,G3#,-,M2
-	SRCFILE "Maze.bas",310
-	DECLE 5439,512
-	;[311] 	MUSIC S,S,-,M2
-	SRCFILE "Maze.bas",311
-	DECLE 16191,512
-	;[312] 	MUSIC S,C3#,-,M1
-	SRCFILE "Maze.bas",312
-	DECLE 3647,256
-	;[313] 	MUSIC S,S,-,M2
-	SRCFILE "Maze.bas",313
-	DECLE 16191,512
-	;[314] 	MUSIC C5#,G3#,-,M2
-	SRCFILE "Maze.bas",314
-	DECLE 5542,512
-	;[315] 	MUSIC -,S,-,M2
-	SRCFILE "Maze.bas",315
-	DECLE 16128,512
-	;[316] 	MUSIC G5#,C3#,-,M1
-	SRCFILE "Maze.bas",316
-	DECLE 3757,256
-	;[317] 	MUSIC S,S,-,M2
+	;[317] 	MUSIC G5#Y,C3#,-,M1
 	SRCFILE "Maze.bas",317
-	DECLE 16191,512
-	;[318] 	MUSIC E5,G3#,-,M2
+	DECLE 3757,256
+	;[318] 	MUSIC S,S,-,M2
 	SRCFILE "Maze.bas",318
-	DECLE 5545,512
-	;[319] 	MUSIC -,S,-,M2
+	DECLE 16191,512
+	;[319] 	MUSIC F5#,G3#,-,M2
 	SRCFILE "Maze.bas",319
-	DECLE 16128,512
-	;[320] 	MUSIC F5#,B2,-,M1
+	DECLE 5547,512
+	;[320] 	MUSIC S,S,-,M2
 	SRCFILE "Maze.bas",320
-	DECLE 3243,256
-	;[321] 	MUSIC S,S,-,M2
+	DECLE 16191,512
+	;[321] 	MUSIC E5,C3#,-,M1
 	SRCFILE "Maze.bas",321
-	DECLE 16191,512
-	;[322] 	MUSIC S,F3#,-,M2
+	DECLE 3753,256
+	;[322] 	MUSIC S,S,-,M2
 	SRCFILE "Maze.bas",322
-	DECLE 4927,512
-	;[323] 	MUSIC S,S,-,M2
+	DECLE 16191,512
+	;[323] 	MUSIC D5#,G3#,-,M2
 	SRCFILE "Maze.bas",323
-	DECLE 16191,512
-	;[324] 	MUSIC S,B2,-,M1
+	DECLE 5544,512
+	;[324] 	MUSIC S,S,-,M2
 	SRCFILE "Maze.bas",324
-	DECLE 3135,256
-	;[325] 	MUSIC S,S,-,M2
+	DECLE 16191,512
+	;[325] 	MUSIC E5,C3#,-,M1
 	SRCFILE "Maze.bas",325
-	DECLE 16191,512
-	;[326] 	MUSIC -,F3#,-,M2
+	DECLE 3753,256
+	;[326] 	MUSIC S,S,-,M2
 	SRCFILE "Maze.bas",326
-	DECLE 4864,512
-	;[327] 	MUSIC -,S,-,M2
+	DECLE 16191,512
+	;[327] 	MUSIC F5#,G3#,-,M2
 	SRCFILE "Maze.bas",327
-	DECLE 16128,512
-	;[328] 	MUSIC -,B2,-,M1
+	DECLE 5547,512
+	;[328] 	MUSIC S,S,-,M2
 	SRCFILE "Maze.bas",328
-	DECLE 3072,256
-	;[329] 	MUSIC -,S,-,M2
+	DECLE 16191,512
+	;[329] 	MUSIC G5#,C3#,-,M1
 	SRCFILE "Maze.bas",329
-	DECLE 16128,512
-	;[330] 	MUSIC -,F3#,-,M2
+	DECLE 3757,256
+	;[330] 	MUSIC S,S,-,M2
 	SRCFILE "Maze.bas",330
-	DECLE 4864,512
-	;[331] 	MUSIC -,S,-,M2
+	DECLE 16191,512
+	;[331] 	MUSIC S,G3#,-,M2
 	SRCFILE "Maze.bas",331
-	DECLE 16128,512
-	;[332] 	MUSIC -,B2,-,M1
+	DECLE 5439,512
+	;[332] 	MUSIC S,S,-,M2
 	SRCFILE "Maze.bas",332
-	DECLE 3072,256
-	;[333] 	MUSIC -,S,-,M2
+	DECLE 16191,512
+	;[333] 	MUSIC S,C3#,-,M1
 	SRCFILE "Maze.bas",333
-	DECLE 16128,512
-	;[334] 	MUSIC -,F3#,-,M1
+	DECLE 3647,256
+	;[334] 	MUSIC S,S,-,M2
 	SRCFILE "Maze.bas",334
-	DECLE 4864,256
-	;[335] 	MUSIC -,S,-,M2
+	DECLE 16191,512
+	;[335] 	MUSIC C5#,G3#,-,M2
 	SRCFILE "Maze.bas",335
-	DECLE 16128,512
-	;[336] 	MUSIC C5#,B2,-,M1
+	DECLE 5542,512
+	;[336] 	MUSIC -,S,-,M2
 	SRCFILE "Maze.bas",336
-	DECLE 3238,256
-	;[337] 	MUSIC S,S,-,M2
+	DECLE 16128,512
+	;[337] 	MUSIC G5#,C3#,-,M1
 	SRCFILE "Maze.bas",337
-	DECLE 16191,512
-	;[338] 	MUSIC F5#,F3#,-,M1
+	DECLE 3757,256
+	;[338] 	MUSIC S,S,-,M2
 	SRCFILE "Maze.bas",338
-	DECLE 5035,256
-	;[339] 	MUSIC S,S,-,M2
+	DECLE 16191,512
+	;[339] 	MUSIC E5,G3#,-,M2
 	SRCFILE "Maze.bas",339
-	DECLE 16191,512
-	;[340] 	MUSIC C5#,B2,-,M1
+	DECLE 5545,512
+	;[340] 	MUSIC -,S,-,M2
 	SRCFILE "Maze.bas",340
-	DECLE 3238,256
-	;[341] 	MUSIC S,S,-,M2
+	DECLE 16128,512
+	;[341] 	MUSIC F5#,B2,-,M1
 	SRCFILE "Maze.bas",341
-	DECLE 16191,512
-	;[342] 	MUSIC E5,A2,-,M1
+	DECLE 3243,256
+	;[342] 	MUSIC S,S,-,M2
 	SRCFILE "Maze.bas",342
-	DECLE 2729,256
-	;[343] 	MUSIC S,S,-,M2
+	DECLE 16191,512
+	;[343] 	MUSIC S,F3#,-,M2
 	SRCFILE "Maze.bas",343
-	DECLE 16191,512
-	;[344] 	MUSIC S,E3,-,M1
+	DECLE 4927,512
+	;[344] 	MUSIC S,S,-,M2
 	SRCFILE "Maze.bas",344
-	DECLE 4415,256
-	;[345] 	MUSIC S,S,-,M2
+	DECLE 16191,512
+	;[345] 	MUSIC S,B2,-,M1
 	SRCFILE "Maze.bas",345
-	DECLE 16191,512
-	;[346] 	MUSIC S,A2,-,M1
+	DECLE 3135,256
+	;[346] 	MUSIC S,S,-,M2
 	SRCFILE "Maze.bas",346
-	DECLE 2623,256
-	;[347] 	MUSIC S,S,-,M2
+	DECLE 16191,512
+	;[347] 	MUSIC -,F3#,-,M2
 	SRCFILE "Maze.bas",347
-	DECLE 16191,512
-	;[348] 	MUSIC S,E3,-,M1
+	DECLE 4864,512
+	;[348] 	MUSIC -,S,-,M2
 	SRCFILE "Maze.bas",348
-	DECLE 4415,256
-	;[349] 	MUSIC S,S,-,M2
+	DECLE 16128,512
+	;[349] 	MUSIC -,B2,-,M1
 	SRCFILE "Maze.bas",349
-	DECLE 16191,512
-	;[350] 	MUSIC S,A2,-,M1
+	DECLE 3072,256
+	;[350] 	MUSIC -,S,-,M2
 	SRCFILE "Maze.bas",350
-	DECLE 2623,256
-	;[351] 	MUSIC S,S,-,M2
+	DECLE 16128,512
+	;[351] 	MUSIC -,F3#,-,M2
 	SRCFILE "Maze.bas",351
-	DECLE 16191,512
-	;[352] 	MUSIC S,E3,-,M1
+	DECLE 4864,512
+	;[352] 	MUSIC -,S,-,M2
 	SRCFILE "Maze.bas",352
-	DECLE 4415,256
-	;[353] 	MUSIC S,S,-,M2
+	DECLE 16128,512
+	;[353] 	MUSIC -,B2,-,M1
 	SRCFILE "Maze.bas",353
-	DECLE 16191,512
-	;[354] 	MUSIC S,A2,-,M1
+	DECLE 3072,256
+	;[354] 	MUSIC -,S,-,M2
 	SRCFILE "Maze.bas",354
-	DECLE 2623,256
-	;[355] 	MUSIC S,S,-,M2
+	DECLE 16128,512
+	;[355] 	MUSIC -,F3#,-,M1
 	SRCFILE "Maze.bas",355
-	DECLE 16191,512
-	;[356] 	MUSIC F5#,E3,-,M1
+	DECLE 4864,256
+	;[356] 	MUSIC -,S,-,M2
 	SRCFILE "Maze.bas",356
-	DECLE 4523,256
-	;[357] 	MUSIC S,S,-,M2
+	DECLE 16128,512
+	;[357] 	MUSIC C5#,B2,-,M1
 	SRCFILE "Maze.bas",357
-	DECLE 16191,512
-	;[358] 	MUSIC E5,A2,-,M2
+	DECLE 3238,256
+	;[358] 	MUSIC S,S,-,M2
 	SRCFILE "Maze.bas",358
-	DECLE 2729,512
-	;[359] 	MUSIC S,S,-,M2
+	DECLE 16191,512
+	;[359] 	MUSIC F5#,F3#,-,M1
 	SRCFILE "Maze.bas",359
-	DECLE 16191,512
-	;[360] 	MUSIC D5#,E3,-,M1
+	DECLE 5035,256
+	;[360] 	MUSIC S,S,-,M2
 	SRCFILE "Maze.bas",360
-	DECLE 4520,256
-	;[361] 	MUSIC S,S,-,M2
+	DECLE 16191,512
+	;[361] 	MUSIC C5#,B2,-,M1
 	SRCFILE "Maze.bas",361
-	DECLE 16191,512
-	;[362] 	MUSIC S,A2,-,M2
+	DECLE 3238,256
+	;[362] 	MUSIC S,S,-,M2
 	SRCFILE "Maze.bas",362
-	DECLE 2623,512
-	;[363] 	MUSIC S,S,-,M2
+	DECLE 16191,512
+	;[363] 	MUSIC E5,A2,-,M1
 	SRCFILE "Maze.bas",363
-	DECLE 16191,512
-	;[364] 	MUSIC C5,G2#,-,M1
+	DECLE 2729,256
+	;[364] 	MUSIC S,S,-,M2
 	SRCFILE "Maze.bas",364
-	DECLE 2469,256
-	;[365] 	MUSIC S,S,-,M2
+	DECLE 16191,512
+	;[365] 	MUSIC S,E3,-,M1
 	SRCFILE "Maze.bas",365
-	DECLE 16191,512
-	;[366] 	MUSIC S,D3#,-,M2
+	DECLE 4415,256
+	;[366] 	MUSIC S,S,-,M2
 	SRCFILE "Maze.bas",366
-	DECLE 4159,512
-	;[367] 	MUSIC S,S,-,M2
+	DECLE 16191,512
+	;[367] 	MUSIC S,A2,-,M1
 	SRCFILE "Maze.bas",367
-	DECLE 16191,512
-	;[368] 	MUSIC S,G2#,-,M1
+	DECLE 2623,256
+	;[368] 	MUSIC S,S,-,M2
 	SRCFILE "Maze.bas",368
-	DECLE 2367,256
-	;[369] 	MUSIC S,S,-,M2
+	DECLE 16191,512
+	;[369] 	MUSIC S,E3,-,M1
 	SRCFILE "Maze.bas",369
-	DECLE 16191,512
-	;[370] 	MUSIC S,D3#,-,M2
+	DECLE 4415,256
+	;[370] 	MUSIC S,S,-,M2
 	SRCFILE "Maze.bas",370
-	DECLE 4159,512
-	;[371] 	MUSIC S,S,-,M2
+	DECLE 16191,512
+	;[371] 	MUSIC S,A2,-,M1
 	SRCFILE "Maze.bas",371
-	DECLE 16191,512
-	;[372] 	MUSIC S,G2#,-,M1
+	DECLE 2623,256
+	;[372] 	MUSIC S,S,-,M2
 	SRCFILE "Maze.bas",372
-	DECLE 2367,256
-	;[373] 	MUSIC S,S,-,M2
-	SRCFILE "Maze.bas",373
 	DECLE 16191,512
-	;[374] 	MUSIC -,D3#,-,M2
+	;[373] 	MUSIC S,E3,-,M1
+	SRCFILE "Maze.bas",373
+	DECLE 4415,256
+	;[374] 	MUSIC S,S,-,M2
 	SRCFILE "Maze.bas",374
-	DECLE 4096,512
-	;[375] 	MUSIC -,S,-,M2
+	DECLE 16191,512
+	;[375] 	MUSIC S,A2,-,M1
 	SRCFILE "Maze.bas",375
-	DECLE 16128,512
-	;[376] 	MUSIC -,G2#,-,M1
+	DECLE 2623,256
+	;[376] 	MUSIC S,S,-,M2
 	SRCFILE "Maze.bas",376
-	DECLE 2304,256
-	;[377] 	MUSIC -,S,-,M2
+	DECLE 16191,512
+	;[377] 	MUSIC F5#,E3,-,M1
 	SRCFILE "Maze.bas",377
-	DECLE 16128,512
-	;[378] 	MUSIC -,D3#,-,M2
+	DECLE 4523,256
+	;[378] 	MUSIC S,S,-,M2
 	SRCFILE "Maze.bas",378
-	DECLE 4096,512
-	;[379] 	MUSIC -,S,-,M2
+	DECLE 16191,512
+	;[379] 	MUSIC E5,A2,-,M2
 	SRCFILE "Maze.bas",379
-	DECLE 16128,512
-	;[380] 	MUSIC -,G2#,-,M1
+	DECLE 2729,512
+	;[380] 	MUSIC S,S,-,M2
 	SRCFILE "Maze.bas",380
-	DECLE 2304,256
-	;[381] 	MUSIC -,S,-,M2
+	DECLE 16191,512
+	;[381] 	MUSIC D5#,E3,-,M1
 	SRCFILE "Maze.bas",381
-	DECLE 16128,512
-	;[382] 	MUSIC -,D3#,-,M1
+	DECLE 4520,256
+	;[382] 	MUSIC S,S,-,M2
 	SRCFILE "Maze.bas",382
-	DECLE 4096,256
-	;[383] 	MUSIC -,S,-,M3
+	DECLE 16191,512
+	;[383] 	MUSIC S,A2,-,M2
 	SRCFILE "Maze.bas",383
-	DECLE 16128,768
-	;[384] 	MUSIC -,G2#,-,M1
+	DECLE 2623,512
+	;[384] 	MUSIC S,S,-,M2
 	SRCFILE "Maze.bas",384
-	DECLE 2304,256
-	;[385] 	MUSIC -,S,-,M2
+	DECLE 16191,512
+	;[385] 	MUSIC C5,G2#,-,M1
 	SRCFILE "Maze.bas",385
-	DECLE 16128,512
-	;[386] 	MUSIC -,D3#,-,M1
+	DECLE 2469,256
+	;[386] 	MUSIC S,S,-,M2
 	SRCFILE "Maze.bas",386
-	DECLE 4096,256
-	;[387] 	MUSIC -,S,-,M3
+	DECLE 16191,512
+	;[387] 	MUSIC S,D3#,-,M2
 	SRCFILE "Maze.bas",387
-	DECLE 16128,768
-	;[388] 	MUSIC -,G2#,-,M1
+	DECLE 4159,512
+	;[388] 	MUSIC S,S,-,M2
 	SRCFILE "Maze.bas",388
-	DECLE 2304,256
-	;[389] 	MUSIC -,S,-,M1
+	DECLE 16191,512
+	;[389] 	MUSIC S,G2#,-,M1
 	SRCFILE "Maze.bas",389
-	DECLE 16128,256
-	;[390] 	MUSIC -,D3#,-,M1
+	DECLE 2367,256
+	;[390] 	MUSIC S,S,-,M2
 	SRCFILE "Maze.bas",390
-	DECLE 4096,256
-	;[391] 	MUSIC -,S,-,M1
+	DECLE 16191,512
+	;[391] 	MUSIC S,D3#,-,M2
 	SRCFILE "Maze.bas",391
-	DECLE 16128,256
-	;[392] 	MUSIC REPEAT
+	DECLE 4159,512
+	;[392] 	MUSIC S,S,-,M2
 	SRCFILE "Maze.bas",392
-	DECLE 0,64768
-	;[393] 	
+	DECLE 16191,512
+	;[393] 	MUSIC S,G2#,-,M1
 	SRCFILE "Maze.bas",393
-	;[394] room0:
+	DECLE 2367,256
+	;[394] 	MUSIC S,S,-,M2
 	SRCFILE "Maze.bas",394
-	; ROOM0
-label_ROOM0:	;[395] 	DATA &1111111111111111
+	DECLE 16191,512
+	;[395] 	MUSIC -,D3#,-,M2
 	SRCFILE "Maze.bas",395
-	DECLE 65535
-	;[396] 	DATA &1000000000000001
+	DECLE 4096,512
+	;[396] 	MUSIC -,S,-,M2
 	SRCFILE "Maze.bas",396
-	DECLE 32769
-	;[397] 	DATA &1000000000000001
+	DECLE 16128,512
+	;[397] 	MUSIC -,G2#,-,M1
 	SRCFILE "Maze.bas",397
-	DECLE 32769
-	;[398] 	DATA &1000010000100001
+	DECLE 2304,256
+	;[398] 	MUSIC -,S,-,M2
 	SRCFILE "Maze.bas",398
-	DECLE 33825
-	;[399] 	DATA &1000010000100001
+	DECLE 16128,512
+	;[399] 	MUSIC -,D3#,-,M2
 	SRCFILE "Maze.bas",399
-	DECLE 33825
-	;[400] 	DATA &1000010000100001
+	DECLE 4096,512
+	;[400] 	MUSIC -,S,-,M2
 	SRCFILE "Maze.bas",400
-	DECLE 33825
-	;[401] 	DATA &1000010000100001
+	DECLE 16128,512
+	;[401] 	MUSIC -,G2#,-,M1
 	SRCFILE "Maze.bas",401
-	DECLE 33825
-	;[402] 	DATA &1000010000100001
+	DECLE 2304,256
+	;[402] 	MUSIC -,S,-,M2
 	SRCFILE "Maze.bas",402
-	DECLE 33825
-	;[403] 	DATA &1000010000100001
+	DECLE 16128,512
+	;[403] 	MUSIC -,D3#,-,M1
 	SRCFILE "Maze.bas",403
-	DECLE 33825
-	;[404] 	DATA &1000000000000001
+	DECLE 4096,256
+	;[404] 	MUSIC -,S,-,M3
 	SRCFILE "Maze.bas",404
-	DECLE 32769
-	;[405] 	DATA &1000000000000001
+	DECLE 16128,768
+	;[405] 	MUSIC -,G2#,-,M1
 	SRCFILE "Maze.bas",405
-	DECLE 32769
-	;[406] 	DATA &1111110000111111
+	DECLE 2304,256
+	;[406] 	MUSIC -,S,-,M2
 	SRCFILE "Maze.bas",406
-	DECLE 64575
-	;[407] 
+	DECLE 16128,512
+	;[407] 	MUSIC -,D3#,-,M1
 	SRCFILE "Maze.bas",407
-	;[408] 
+	DECLE 4096,256
+	;[408] 	MUSIC -,S,-,M3
 	SRCFILE "Maze.bas",408
-	;[409] room1:
+	DECLE 16128,768
+	;[409] 	MUSIC -,G2#,-,M1
 	SRCFILE "Maze.bas",409
-	; ROOM1
-label_ROOM1:	;[410] 	DATA &1111111111111111
+	DECLE 2304,256
+	;[410] 	MUSIC -,S,-,M1
 	SRCFILE "Maze.bas",410
-	DECLE 65535
-	;[411] 	DATA &1000000000000001
+	DECLE 16128,256
+	;[411] 	MUSIC -,D3#,-,M1
 	SRCFILE "Maze.bas",411
-	DECLE 32769
-	;[412] 	DATA &1000000000000001
+	DECLE 4096,256
+	;[412] 	MUSIC -,S,-,M1
 	SRCFILE "Maze.bas",412
-	DECLE 32769
-	;[413] 	DATA &1000011111111101
+	DECLE 16128,256
+	;[413] 	MUSIC REPEAT
 	SRCFILE "Maze.bas",413
-	DECLE 34813
-	;[414] 	DATA &1000010000100101
+	DECLE 0,64768
+	;[414] 	
 	SRCFILE "Maze.bas",414
-	DECLE 33829
-	;[415] 	DATA &1010000000100111
+	;[415] room0:
 	SRCFILE "Maze.bas",415
-	DECLE 40999
-	;[416] 	DATA &1010010000100000
+	; ROOM0
+label_ROOM0:	;[416] 	DATA &1111111111111111
 	SRCFILE "Maze.bas",416
-	DECLE 42016
-	;[417] 	DATA &1010010000100001
+	DECLE 65535
+	;[417] 	DATA &1000000000000001
 	SRCFILE "Maze.bas",417
-	DECLE 42017
-	;[418] 	DATA &1010011111100001
-	SRCFILE "Maze.bas",418
-	DECLE 42977
-	;[419] 	DATA &1110000000000001
-	SRCFILE "Maze.bas",419
-	DECLE 57345
-	;[420] 	DATA &1000000000000001
-	SRCFILE "Maze.bas",420
 	DECLE 32769
-	;[421] 	DATA &1111111111111111
+	;[418] 	DATA &1000000000000001
+	SRCFILE "Maze.bas",418
+	DECLE 32769
+	;[419] 	DATA &1000010000100001
+	SRCFILE "Maze.bas",419
+	DECLE 33825
+	;[420] 	DATA &1000010000100001
+	SRCFILE "Maze.bas",420
+	DECLE 33825
+	;[421] 	DATA &1000010000100001
 	SRCFILE "Maze.bas",421
-	DECLE 65535
-	;[422] 
+	DECLE 33825
+	;[422] 	DATA &1000010000100001
 	SRCFILE "Maze.bas",422
-	;[423] room2:
+	DECLE 33825
+	;[423] 	DATA &1000010000100001
 	SRCFILE "Maze.bas",423
-	; ROOM2
-label_ROOM2:	;[424] 	DATA &1111111111111111
+	DECLE 33825
+	;[424] 	DATA &1000010000100001
 	SRCFILE "Maze.bas",424
-	DECLE 65535
+	DECLE 33825
 	;[425] 	DATA &1000000000000001
 	SRCFILE "Maze.bas",425
 	DECLE 32769
-	;[426] 	DATA &1000011111100001
+	;[426] 	DATA &1000000000000001
 	SRCFILE "Maze.bas",426
-	DECLE 34785
-	;[427] 	DATA &1010010000100001
+	DECLE 32769
+	;[427] 	DATA &1111110000111111
 	SRCFILE "Maze.bas",427
-	DECLE 42017
-	;[428] 	DATA &1010010000111111
+	DECLE 64575
+	;[428] 
 	SRCFILE "Maze.bas",428
-	DECLE 42047
-	;[429] 	DATA &1010010000100000
+	;[429] 
 	SRCFILE "Maze.bas",429
-	DECLE 42016
-	;[430] 	DATA &1011111000100000
+	;[430] room1:
 	SRCFILE "Maze.bas",430
-	DECLE 48672
-	;[431] 	DATA &1010000000100111
+	; ROOM1
+label_ROOM1:	;[431] 	DATA &1111111111111111
 	SRCFILE "Maze.bas",431
-	DECLE 40999
-	;[432] 	DATA &1000001000100001
+	DECLE 65535
+	;[432] 	DATA &1000000000000001
 	SRCFILE "Maze.bas",432
-	DECLE 33313
-	;[433] 	DATA &1000001111100001
+	DECLE 32769
+	;[433] 	DATA &1000000000000001
 	SRCFILE "Maze.bas",433
-	DECLE 33761
-	;[434] 	DATA &1000000000000001
+	DECLE 32769
+	;[434] 	DATA &1000011111111101
 	SRCFILE "Maze.bas",434
-	DECLE 32769
-	;[435] 	DATA &1111111111111111
+	DECLE 34813
+	;[435] 	DATA &1000010000100101
 	SRCFILE "Maze.bas",435
-	DECLE 65535
-	;[436] 
+	DECLE 33829
+	;[436] 	DATA &1010000000100111
 	SRCFILE "Maze.bas",436
-	;[437] room3:
+	DECLE 40999
+	;[437] 	DATA &1010010000100000
 	SRCFILE "Maze.bas",437
-	; ROOM3
-label_ROOM3:	;[438]     DATA &1111111111111111
+	DECLE 42016
+	;[438] 	DATA &1010010000100001
 	SRCFILE "Maze.bas",438
-	DECLE 65535
-	;[439]     DATA &1000000000000001
+	DECLE 42017
+	;[439] 	DATA &1010011111100001
 	SRCFILE "Maze.bas",439
-	DECLE 32769
-	;[440]     DATA &1000000010000101
+	DECLE 42977
+	;[440] 	DATA &1110000000000001
 	SRCFILE "Maze.bas",440
-	DECLE 32901
-	;[441]     DATA &1000000010000101
+	DECLE 57345
+	;[441] 	DATA &1000000000000001
 	SRCFILE "Maze.bas",441
-	DECLE 32901
-	;[442]     DATA &1011111011111101
+	DECLE 32769
+	;[442] 	DATA &1111111111111111
 	SRCFILE "Maze.bas",442
-	DECLE 48893
-	;[443]     DATA &1000000011111101
+	DECLE 65535
+	;[443] 
 	SRCFILE "Maze.bas",443
-	DECLE 33021
-	;[444]     DATA &1001001000000101
+	;[444] room2:
 	SRCFILE "Maze.bas",444
-	DECLE 37381
-	;[445]     DATA &1001001000000101
+	; ROOM2
+label_ROOM2:	;[445] 	DATA &1111111111111111
 	SRCFILE "Maze.bas",445
-	DECLE 37381
-	;[446]     DATA &1001001111110101
+	DECLE 65535
+	;[446] 	DATA &1000000000000001
 	SRCFILE "Maze.bas",446
-	DECLE 37877
-	;[447]     DATA &1111111111110101
+	DECLE 32769
+	;[447] 	DATA &1000011111100001
 	SRCFILE "Maze.bas",447
-	DECLE 65525
-	;[448]     DATA &0000000000000101
+	DECLE 34785
+	;[448] 	DATA &1010010000100001
 	SRCFILE "Maze.bas",448
-	DECLE 5
-	;[449]     DATA &1111111111111111
+	DECLE 42017
+	;[449] 	DATA &1010010000111111
 	SRCFILE "Maze.bas",449
-	DECLE 65535
-	;[450] 
+	DECLE 42047
+	;[450] 	DATA &1010010000100000
 	SRCFILE "Maze.bas",450
-	;[451] room4:
+	DECLE 42016
+	;[451] 	DATA &1011111000100000
 	SRCFILE "Maze.bas",451
-	; ROOM4
-label_ROOM4:	;[452]     DATA &1111111111111111
+	DECLE 48672
+	;[452] 	DATA &1010000000100111
 	SRCFILE "Maze.bas",452
-	DECLE 65535
-	;[453]     DATA &1000000000000001
+	DECLE 40999
+	;[453] 	DATA &1000001000100001
 	SRCFILE "Maze.bas",453
-	DECLE 32769
-	;[454]     DATA &1000000000000001
+	DECLE 33313
+	;[454] 	DATA &1000001111100001
 	SRCFILE "Maze.bas",454
-	DECLE 32769
-	;[455]     DATA &1000000000000001
+	DECLE 33761
+	;[455] 	DATA &1000000000000001
 	SRCFILE "Maze.bas",455
 	DECLE 32769
-	;[456]     DATA &1111110111111001
+	;[456] 	DATA &1111111111111111
 	SRCFILE "Maze.bas",456
-	DECLE 65017
-	;[457]     DATA &1000000000001001
-	SRCFILE "Maze.bas",457
-	DECLE 32777
-	;[458]     DATA &1000111100101001
-	SRCFILE "Maze.bas",458
-	DECLE 36649
-	;[459]     DATA &1000111100101001
-	SRCFILE "Maze.bas",459
-	DECLE 36649
-	;[460]     DATA &1000100100100001
-	SRCFILE "Maze.bas",460
-	DECLE 35105
-	;[461]     DATA &1000000101111111
-	SRCFILE "Maze.bas",461
-	DECLE 33151
-	;[462]     DATA &1000000000000000
-	SRCFILE "Maze.bas",462
-	DECLE 32768
-	;[463]     DATA &1111111111111111
-	SRCFILE "Maze.bas",463
 	DECLE 65535
-	;[464] 
+	;[457] 
+	SRCFILE "Maze.bas",457
+	;[458] room3:
+	SRCFILE "Maze.bas",458
+	; ROOM3
+label_ROOM3:	;[459]     DATA &1111111111111111
+	SRCFILE "Maze.bas",459
+	DECLE 65535
+	;[460]     DATA &1000000000000001
+	SRCFILE "Maze.bas",460
+	DECLE 32769
+	;[461]     DATA &1000000010000101
+	SRCFILE "Maze.bas",461
+	DECLE 32901
+	;[462]     DATA &1000000010000101
+	SRCFILE "Maze.bas",462
+	DECLE 32901
+	;[463]     DATA &1011111011111101
+	SRCFILE "Maze.bas",463
+	DECLE 48893
+	;[464]     DATA &1000000011111101
 	SRCFILE "Maze.bas",464
-	;[465] 	'
+	DECLE 33021
+	;[465]     DATA &1001001000000101
 	SRCFILE "Maze.bas",465
-	;[466] 	' Bitmaps used in the game
+	DECLE 37381
+	;[466]     DATA &1001001000000101
 	SRCFILE "Maze.bas",466
-	;[467] 	'
+	DECLE 37381
+	;[467]     DATA &1001001111110101
 	SRCFILE "Maze.bas",467
-	;[468] drawings:
+	DECLE 37877
+	;[468]     DATA &1111111111110101
 	SRCFILE "Maze.bas",468
-	; DRAWINGS
-label_DRAWINGS:	;[469] 	BITMAP "#..##..#"
+	DECLE 65525
+	;[469]     DATA &0000000000000101
 	SRCFILE "Maze.bas",469
-	;[470] 	BITMAP "########"
+	DECLE 5
+	;[470]     DATA &1111111111111111
 	SRCFILE "Maze.bas",470
-	DECLE 65433
-	;[471] 	BITMAP ".#.##.#."
+	DECLE 65535
+	;[471] 
 	SRCFILE "Maze.bas",471
-	;[472] 	BITMAP ".######."
+	;[472] room4:
 	SRCFILE "Maze.bas",472
-	DECLE 32346
-	;[473] 	BITMAP "..####.."
+	; ROOM4
+label_ROOM4:	;[473]     DATA &1111111111111111
 	SRCFILE "Maze.bas",473
-	;[474] 	BITMAP "..#..#.."
+	DECLE 65535
+	;[474]     DATA &1000000000000001
 	SRCFILE "Maze.bas",474
-	DECLE 9276
-	;[475] 	BITMAP "..#..#.."
+	DECLE 32769
+	;[475]     DATA &1000000000000001
 	SRCFILE "Maze.bas",475
-	;[476] 	BITMAP ".##..##."
+	DECLE 32769
+	;[476]     DATA &1000000000000001
 	SRCFILE "Maze.bas",476
-	DECLE 26148
-	;[477] 
+	DECLE 32769
+	;[477]     DATA &1111110111111001
 	SRCFILE "Maze.bas",477
-	;[478] 	BITMAP "...##..."
+	DECLE 65017
+	;[478]     DATA &1000000000001001
 	SRCFILE "Maze.bas",478
-	;[479] 	BITMAP "...##..."
+	DECLE 32777
+	;[479]     DATA &1000111100101001
 	SRCFILE "Maze.bas",479
-	DECLE 6168
-	;[480] 	BITMAP "..####.."
+	DECLE 36649
+	;[480]     DATA &1000111100101001
 	SRCFILE "Maze.bas",480
-	;[481] 	BITMAP "..#..#.."
+	DECLE 36649
+	;[481]     DATA &1000100100100001
 	SRCFILE "Maze.bas",481
-	DECLE 9276
-	;[482] 	BITMAP "..####.."
+	DECLE 35105
+	;[482]     DATA &1000000101111111
 	SRCFILE "Maze.bas",482
-	;[483] 	BITMAP "..####.."
+	DECLE 33151
+	;[483]     DATA &1000000000000000
 	SRCFILE "Maze.bas",483
-	DECLE 15420
-	;[484] 	BITMAP ".######."
+	DECLE 32768
+	;[484]     DATA &1111111111111111
 	SRCFILE "Maze.bas",484
-	;[485] 	BITMAP "##.##.##"
+	DECLE 65535
+	;[485] 
 	SRCFILE "Maze.bas",485
-	DECLE 56190
-	;[486] 
+	;[486] 	'
 	SRCFILE "Maze.bas",486
-	;[487] 	BITMAP "...##..."
+	;[487] 	' Bitmaps used in the game
 	SRCFILE "Maze.bas",487
-	;[488] 	BITMAP "...##..."
+	;[488] 	'
 	SRCFILE "Maze.bas",488
-	DECLE 6168
-	;[489] 	BITMAP ".######."
+	;[489] drawings:
 	SRCFILE "Maze.bas",489
-	;[490] 	BITMAP "...##..."
+	; DRAWINGS
+label_DRAWINGS:	;[490] 	BITMAP "#..##..#"
 	SRCFILE "Maze.bas",490
-	DECLE 6270
-	;[491] 	BITMAP "...##..."
+	;[491] 	BITMAP "########"
 	SRCFILE "Maze.bas",491
-	;[492] 	BITMAP "..####.."
+	DECLE 65433
+	;[492] 	BITMAP ".#.##.#."
 	SRCFILE "Maze.bas",492
-	DECLE 15384
-	;[493] 	BITMAP "..#..#.."
+	;[493] 	BITMAP ".######."
 	SRCFILE "Maze.bas",493
-	;[494] 	BITMAP ".##..##."
+	DECLE 32346
+	;[494] 	BITMAP "..####.."
 	SRCFILE "Maze.bas",494
-	DECLE 26148
-	;[495] 
+	;[495] 	BITMAP "..#..#.."
 	SRCFILE "Maze.bas",495
-	;[496] 	BITMAP ".##....."
+	DECLE 9276
+	;[496] 	BITMAP "..#..#.."
 	SRCFILE "Maze.bas",496
-	;[497] 	BITMAP "###....."
+	;[497] 	BITMAP ".##..##."
 	SRCFILE "Maze.bas",497
-	DECLE 57440
-	;[498] 	BITMAP ".##....."
+	DECLE 26148
+	;[498] 
 	SRCFILE "Maze.bas",498
-	;[499] 	BITMAP ".#######"
+	;[499] 	BITMAP "...##..."
 	SRCFILE "Maze.bas",499
-	DECLE 32608
-	;[500] 	BITMAP ".######."
+	;[500] 	BITMAP "...##..."
 	SRCFILE "Maze.bas",500
-	;[501] 	BITMAP ".##..##."
+	DECLE 6168
+	;[501] 	BITMAP "..####.."
 	SRCFILE "Maze.bas",501
-	DECLE 26238
-	;[502] 	BITMAP ".##..##."
+	;[502] 	BITMAP "..#..#.."
 	SRCFILE "Maze.bas",502
-	;[503] 	BITMAP "###.###."
+	DECLE 9276
+	;[503] 	BITMAP "..####.."
 	SRCFILE "Maze.bas",503
+	;[504] 	BITMAP "..####.."
+	SRCFILE "Maze.bas",504
+	DECLE 15420
+	;[505] 	BITMAP ".######."
+	SRCFILE "Maze.bas",505
+	;[506] 	BITMAP "##.##.##"
+	SRCFILE "Maze.bas",506
+	DECLE 56190
+	;[507] 
+	SRCFILE "Maze.bas",507
+	;[508] 	BITMAP "...##..."
+	SRCFILE "Maze.bas",508
+	;[509] 	BITMAP "...##..."
+	SRCFILE "Maze.bas",509
+	DECLE 6168
+	;[510] 	BITMAP ".######."
+	SRCFILE "Maze.bas",510
+	;[511] 	BITMAP "...##..."
+	SRCFILE "Maze.bas",511
+	DECLE 6270
+	;[512] 	BITMAP "...##..."
+	SRCFILE "Maze.bas",512
+	;[513] 	BITMAP "..####.."
+	SRCFILE "Maze.bas",513
+	DECLE 15384
+	;[514] 	BITMAP "..#..#.."
+	SRCFILE "Maze.bas",514
+	;[515] 	BITMAP ".##..##."
+	SRCFILE "Maze.bas",515
+	DECLE 26148
+	;[516] 
+	SRCFILE "Maze.bas",516
+	;[517] 	BITMAP ".##....."
+	SRCFILE "Maze.bas",517
+	;[518] 	BITMAP "###....."
+	SRCFILE "Maze.bas",518
+	DECLE 57440
+	;[519] 	BITMAP ".##....."
+	SRCFILE "Maze.bas",519
+	;[520] 	BITMAP ".#######"
+	SRCFILE "Maze.bas",520
+	DECLE 32608
+	;[521] 	BITMAP ".######."
+	SRCFILE "Maze.bas",521
+	;[522] 	BITMAP ".##..##."
+	SRCFILE "Maze.bas",522
+	DECLE 26238
+	;[523] 	BITMAP ".##..##."
+	SRCFILE "Maze.bas",523
+	;[524] 	BITMAP "###.###."
+	SRCFILE "Maze.bas",524
 	DECLE 61030
 	;ENDFILE
 	SRCFILE "",0
@@ -8521,9 +8697,7 @@ IV.FLEN:   RMB 1    ; IV_xxx	8-bit	   Length of FIFO data
 
 var_A:	RMB 1	; A
 var_C:	RMB 1	; C
-var_COLOR:	RMB 1	; COLOR
 var_DIRECTION:	RMB 1	; DIRECTION
-var_LOOP:	RMB 1	; LOOP
 var_RESULT:	RMB 1	; RESULT
 var_ROOM:	RMB 1	; ROOM
 var_TIMER:	RMB 1	; TIMER
