@@ -1,0 +1,524 @@
+	REM
+	REM Maze
+	REM CIS 272 Honors Project
+	REM by Tej Sai Kakumanu
+	REM Dec 2nd 2024
+	REM
+
+	REM Include useful predefined constants
+	INCLUDE "constants.bas"
+
+	WAIT
+	DEFINE DEF00,4,drawings
+	ON FRAME GOSUB FRAME_UPDATE
+	TIMER = 0
+
+
+restart:
+
+	IF #score <> 0 THEN
+		GOSUB effect1
+	END IF
+	
+	MODE SCREEN_CS, STACK_BLACK, STACK_BLACK, STACK_BLACK, STACK_BLACK
+	WAIT
+	
+	PLAY SIMPLE
+	PLAY tune
+	room=0
+	#score=0
+
+	
+
+load_room:
+
+	
+
+	IF #score = 5 THEN
+		CLS
+		PRINT AT SCREENPOS(4, 5) COLOR CS_BLUE, "Well Done!"
+		
+		
+
+		MODE SCREEN_CS, STACK_WHITE, STACK_WHITE, STACK_WHITE, STACK_WHITE
+		WAIT
+		
+		PLAY OFF
+			
+	
+		IF CONT <> 0 AND TIMER = 0 THEN
+			GOTO restart
+		END IF
+		GOTO load_room
+	END IF
+	
+
+	PLAY OFF
+
+	IF #score <> 0 THEN
+		GOSUB effect3
+	END IF
+
+	PLAY SIMPLE
+	PLAY TUNE
+
+
+	IF room = 0 THEN RESTORE room0 : #monster = SPR03 + SPR_GREEN
+	IF room = 1 THEN RESTORE room1 : #monster = SPR00 + SPR_GREEN
+	IF room = 2 THEN RESTORE room2 : #monster = SPR03 + SPR_GREEN
+	IF room = 3 THEN RESTORE room3 : #monster = SPR00 + SPR_GREEN
+	IF room = 4 THEN RESTORE room4 : #monster = SPR03 + SPR_GREEN
+
+	' Deactivate sprites
+	resetsprite(0)
+	WAIT    ' Wait to reset collision bits
+
+	'
+	' Clean screen
+	'
+	CLS
+
+	'
+	' Draw current score in vertical
+	'
+	PRINT AT (SCREENPOS(0, 0)), "L"
+	PRINT AT (SCREENPOS(0, 1)), "V"
+	PRINT AT (SCREENPOS(0, 2)), "L"
+	PRINT AT (SCREENPOS(0, 3)),(#score%10+16)*8+6
+	PRINT COLOR CS_BLUE
+
+	'
+	' Draw room line per line
+	' Extract bit per bit of value to signal labyrinth value
+	'
+	FOR y = 0 TO 11
+		READ #line
+		FOR x = 0 TO 15
+			IF #line AND $8000 THEN PRINT AT y*20+x+2,"\95"
+			#line = #line * 2
+		NEXT x
+	NEXT y
+
+	'
+	' Setup some random barzacks(deleted)
+	'
+
+	'
+	' Player start
+	'
+	x1 = 32
+	y1 = 28
+
+	room = room + 1
+	IF room = 5 THEN room = 0
+
+DIRECTION = 0
+
+loop:
+	WAIT
+
+	'
+	' Update MOBs
+	'
+	
+
+	'
+	
+	
+
+	' Check for movement
+	IF COL0 AND HIT_BACKGROUND THEN
+		GOSUB effect2
+
+	ELSE IF CONT1.UP THEN 
+		IF Y1>0 THEN 
+			Y1=Y1-1
+			DIRECTION = 1
+		END IF
+	
+	ELSE IF CONT1.DOWN THEN 
+		IF Y1<104 THEN 
+			Y1=Y1+1
+			DIRECTION = 2
+		END IF
+	
+		
+	ELSE IF CONT1.LEFT THEN 
+		IF X1>0 THEN 
+			X1=X1-1
+			DIRECTION = 3
+		END IF
+	
+	ELSE IF CONT1.RIGHT THEN 
+		IF X1<168 THEN 
+			X1=X1+1
+			DIRECTION = 4
+		END IF
+	END IF
+	END IF
+	END IF
+	END IF
+	END IF
+
+	SPRITE 0,X1+HIT+VISIBLE,Y1+ZOOMY1,SPR02 + SPR_RED ' Our hero
+	WAIT
+	
+
+	IF COL0 AND HIT_BACKGROUND THEN 
+		IF DIRECTION = 1 THEN
+			Y1 = Y1 + 1
+		END IF
+		IF DIRECTION = 2 THEN
+			Y1 = Y1 - 1
+		END IF
+		IF DIRECTION = 3 THEN
+			X1 = X1 + 1
+		END IF
+		IF DIRECTION = 4 THEN
+			X1 = X1 - 1
+		END IF
+
+		SPRITE 0,X1+HIT+VISIBLE,Y1ZOOMY1,SPR02 + SPR_RED ' Our hero	
+		WAIT
+	END IF
+
+
+
+	' Check for change of room
+	IF Y1<8 OR X1<24 OR X1>144 OR Y1>96 THEN 
+		#score=#score+1
+		TIMER = 900
+		GOTO load_room
+	END IF
+
+
+	' Barzacks displacement
+	IF FRAME AND 7 THEN GOTO loop
+	IF Y2=0 THEN GOTO avoid1
+	IF X1<>X2 THEN IF X1<X2 THEN X2=X2-1 ELSE X2=X2+1
+	IF Y1<>Y2 THEN IF Y1<Y2 THEN Y2=Y2-1 ELSE Y2=Y2+1
+avoid1:
+	IF Y3=0 THEN GOTO avoid2
+	IF X1<>X3 THEN IF X1<X3 THEN X3=X3-1 ELSE X3=X3+1
+	IF Y1<>Y3 THEN IF Y1<Y3 THEN Y3=Y3-1 ELSE Y3=Y3+1
+avoid2:
+	IF Y4=0 THEN GOTO avoid3
+	IF X1<>X4 THEN IF X1<X4 THEN X4=X4-1 ELSE X4=X4+1
+	IF Y1<>Y4 THEN IF Y1<Y4 THEN Y4=Y4-1 ELSE Y4=Y4+1
+avoid3:
+	IF Y5=0 THEN GOTO avoid4
+	IF X1<>X5 THEN IF X1<X5 THEN X5=X5-1 ELSE X5=X5+1
+	IF Y1<>Y5 THEN IF Y1<Y5 THEN Y5=Y5-1 ELSE Y5=Y5+1
+avoid4:
+	GOTO loop
+
+
+barzack:	PROCEDURE
+
+	DO
+		WAIT
+		X = RAND % 16
+	LOOP WHILE #BACKTAB(Y * BACKGROUND_COLUMNS + X + 2)
+
+	result = (x + 2) * 8 + 8
+
+	END
+
+	'
+	' Definition of rooms
+	'
+	' Uses binary numbers to form a 16-bit value
+	' (the maximum fitting a DATA value)
+	'
+FRAME_UPDATE:	PROCEDURE
+
+		IF TIMER > 0 THEN
+			TIMER = TIMER - 1
+		END IF
+
+		END
+
+reset_sound:	PROCEDURE
+	SOUND 0,1,0
+	SOUND 1,1,0
+	SOUND 2,1,0
+	SOUND 4,,$38
+	RETURN
+	END
+
+effect1:	PROCEDURE
+	GOSUB reset_sound
+	FOR A = 1 TO 4
+        IF A=1 THEN #C=700
+        IF A=2 THEN #C=750
+        IF A=3 THEN #C=800
+        IF A=4 THEN #C=850
+        IF A=5 THEN #C=379
+        IF A=6 THEN #C=319
+        IF A=7 THEN #C=451
+        IF A=8 THEN #C=358
+        IF A=9 THEN #C=301
+        IF A=10 THEN #C=239
+	SOUND 0,#C,PSG_ENVELOPE_ENABLE
+	SOUND 1,(#C+1)/2,PSG_ENVELOPE_ENABLE
+	SOUND 2,#C*2,PSG_ENVELOPE_ENABLE
+	SOUND 3,6000,PSG_ENVELOPE_SINGLE_SHOT_RAMP_DOWN_AND_OFF	' Slow decay, single shot \______
+	FOR C = 1 TO 30:WAIT:NEXT C
+	NEXT A
+	RETURN
+	END
+
+effect2:	PROCEDURE
+	GOSUB reset_sound
+	FOR A = 5 TO 5
+        IF A=1 THEN #C=477
+        IF A=2 THEN #C=379
+        IF A=3 THEN #C=319
+        IF A=4 THEN #C=477
+        IF A=5 THEN #C=379
+        IF A=6 THEN #C=319
+        IF A=7 THEN #C=451
+        IF A=8 THEN #C=358
+        IF A=9 THEN #C=301
+        IF A=10 THEN #C=239
+	SOUND 0,#C,PSG_ENVELOPE_ENABLE
+	SOUND 1,(#C+1)/2,PSG_ENVELOPE_ENABLE
+	SOUND 2,#C*2,PSG_ENVELOPE_ENABLE
+	SOUND 3,6000,PSG_ENVELOPE_SINGLE_SHOT_RAMP_DOWN_AND_OFF	' Slow decay, single shot \______
+	FOR C = 1 TO 30:WAIT:NEXT C
+	NEXT A
+	RETURN
+	END
+
+effect3:	PROCEDURE
+	GOSUB reset_sound
+	FOR A = 8 TO 9
+        IF A=1 THEN #C=477
+        IF A=2 THEN #C=379
+        IF A=3 THEN #C=319
+        IF A=4 THEN #C=477
+        IF A=5 THEN #C=379
+        IF A=6 THEN #C=319
+        IF A=7 THEN #C=451
+        IF A=8 THEN #C=200
+        IF A=9 THEN #C=100
+        IF A=10 THEN #C=239
+	SOUND 0,#C,PSG_ENVELOPE_ENABLE
+	SOUND 1,(#C+1)/2,PSG_ENVELOPE_ENABLE
+	SOUND 2,#C*2,PSG_ENVELOPE_ENABLE
+	SOUND 3,6000,PSG_ENVELOPE_SINGLE_SHOT_RAMP_DOWN_AND_OFF	' Slow decay, single shot \______
+	FOR C = 1 TO 30:WAIT:NEXT C
+	NEXT A
+	RETURN
+	END
+
+
+tune: DATA 5
+	MUSIC G5#Y,C3#,-,M1
+	MUSIC S,S,-,M2
+	MUSIC F5#,G3#,-,M2
+	MUSIC S,S,-,M2
+	MUSIC E5,C3#,-,M1
+	MUSIC S,S,-,M2
+	MUSIC D5#,G3#,-,M2
+	MUSIC S,S,-,M2
+	MUSIC E5,C3#,-,M1
+	MUSIC S,S,-,M2
+	MUSIC F5#,G3#,-,M2
+	MUSIC S,S,-,M2
+	MUSIC G5#,C3#,-,M1
+	MUSIC S,S,-,M2
+	MUSIC S,G3#,-,M2
+	MUSIC S,S,-,M2
+	MUSIC S,C3#,-,M1
+	MUSIC S,S,-,M2
+	MUSIC C5#,G3#,-,M2
+	MUSIC -,S,-,M2
+	MUSIC G5#,C3#,-,M1
+	MUSIC S,S,-,M2
+	MUSIC E5,G3#,-,M2
+	MUSIC -,S,-,M2
+	MUSIC F5#,B2,-,M1
+	MUSIC S,S,-,M2
+	MUSIC S,F3#,-,M2
+	MUSIC S,S,-,M2
+	MUSIC S,B2,-,M1
+	MUSIC S,S,-,M2
+	MUSIC -,F3#,-,M2
+	MUSIC -,S,-,M2
+	MUSIC -,B2,-,M1
+	MUSIC -,S,-,M2
+	MUSIC -,F3#,-,M2
+	MUSIC -,S,-,M2
+	MUSIC -,B2,-,M1
+	MUSIC -,S,-,M2
+	MUSIC -,F3#,-,M1
+	MUSIC -,S,-,M2
+	MUSIC C5#,B2,-,M1
+	MUSIC S,S,-,M2
+	MUSIC F5#,F3#,-,M1
+	MUSIC S,S,-,M2
+	MUSIC C5#,B2,-,M1
+	MUSIC S,S,-,M2
+	MUSIC E5,A2,-,M1
+	MUSIC S,S,-,M2
+	MUSIC S,E3,-,M1
+	MUSIC S,S,-,M2
+	MUSIC S,A2,-,M1
+	MUSIC S,S,-,M2
+	MUSIC S,E3,-,M1
+	MUSIC S,S,-,M2
+	MUSIC S,A2,-,M1
+	MUSIC S,S,-,M2
+	MUSIC S,E3,-,M1
+	MUSIC S,S,-,M2
+	MUSIC S,A2,-,M1
+	MUSIC S,S,-,M2
+	MUSIC F5#,E3,-,M1
+	MUSIC S,S,-,M2
+	MUSIC E5,A2,-,M2
+	MUSIC S,S,-,M2
+	MUSIC D5#,E3,-,M1
+	MUSIC S,S,-,M2
+	MUSIC S,A2,-,M2
+	MUSIC S,S,-,M2
+	MUSIC C5,G2#,-,M1
+	MUSIC S,S,-,M2
+	MUSIC S,D3#,-,M2
+	MUSIC S,S,-,M2
+	MUSIC S,G2#,-,M1
+	MUSIC S,S,-,M2
+	MUSIC S,D3#,-,M2
+	MUSIC S,S,-,M2
+	MUSIC S,G2#,-,M1
+	MUSIC S,S,-,M2
+	MUSIC -,D3#,-,M2
+	MUSIC -,S,-,M2
+	MUSIC -,G2#,-,M1
+	MUSIC -,S,-,M2
+	MUSIC -,D3#,-,M2
+	MUSIC -,S,-,M2
+	MUSIC -,G2#,-,M1
+	MUSIC -,S,-,M2
+	MUSIC -,D3#,-,M1
+	MUSIC -,S,-,M3
+	MUSIC -,G2#,-,M1
+	MUSIC -,S,-,M2
+	MUSIC -,D3#,-,M1
+	MUSIC -,S,-,M3
+	MUSIC -,G2#,-,M1
+	MUSIC -,S,-,M1
+	MUSIC -,D3#,-,M1
+	MUSIC -,S,-,M1
+	MUSIC REPEAT
+	
+room0:
+	DATA &1111111111111111
+	DATA &1000000000000001
+	DATA &1000000000000001
+	DATA &1000010000100001
+	DATA &1000010000100001
+	DATA &1000010000100001
+	DATA &1000010000100001
+	DATA &1000010000100001
+	DATA &1000010000100001
+	DATA &1000000000000001
+	DATA &1000000000000001
+	DATA &1111110000111111
+
+
+room1:
+	DATA &1111111111111111
+	DATA &1000000000000001
+	DATA &1000000000000001
+	DATA &1000011111111101
+	DATA &1000010000100101
+	DATA &1010000000100111
+	DATA &1010010000100000
+	DATA &1010010000100001
+	DATA &1010011111100001
+	DATA &1110000000000001
+	DATA &1000000000000001
+	DATA &1111111111111111
+
+room2:
+	DATA &1111111111111111
+	DATA &1000000000000001
+	DATA &1000011111100001
+	DATA &1010010000100001
+	DATA &1010010000111111
+	DATA &1010010000100000
+	DATA &1011111000100000
+	DATA &1010000000100111
+	DATA &1000001000100001
+	DATA &1000001111100001
+	DATA &1000000000000001
+	DATA &1111111111111111
+
+room3:
+    DATA &1111111111111111
+    DATA &1000000000000001
+    DATA &1000000010000101
+    DATA &1000000010000101
+    DATA &1011111011111101
+    DATA &1000000011111101
+    DATA &1001001000000101
+    DATA &1001001000000101
+    DATA &1001001111110101
+    DATA &1111111111110101
+    DATA &0000000000000101
+    DATA &1111111111111111
+
+room4:
+    DATA &1111111111111111
+    DATA &1000000000000001
+    DATA &1000000000000001
+    DATA &1000000000000001
+    DATA &1111110111111001
+    DATA &1000000000001001
+    DATA &1000111100101001
+    DATA &1000111100101001
+    DATA &1000100100100001
+    DATA &1000000101111111
+    DATA &1000000000000000
+    DATA &1111111111111111
+
+	'
+	' Bitmaps used in the game
+	'
+drawings:
+	BITMAP "#..##..#"
+	BITMAP "########"
+	BITMAP ".#.##.#."
+	BITMAP ".######."
+	BITMAP "..####.."
+	BITMAP "..#..#.."
+	BITMAP "..#..#.."
+	BITMAP ".##..##."
+
+	BITMAP "...##..."
+	BITMAP "...##..."
+	BITMAP "..####.."
+	BITMAP "..#..#.."
+	BITMAP "..####.."
+	BITMAP "..####.."
+	BITMAP ".######."
+	BITMAP "##.##.##"
+
+	BITMAP "...##..."
+	BITMAP "...##..."
+	BITMAP ".######."
+	BITMAP "...##..."
+	BITMAP "...##..."
+	BITMAP "..####.."
+	BITMAP "..#..#.."
+	BITMAP ".##..##."
+
+	BITMAP ".##....."
+	BITMAP "###....."
+	BITMAP ".##....."
+	BITMAP ".#######"
+	BITMAP ".######."
+	BITMAP ".##..##."
+	BITMAP ".##..##."
+	BITMAP "###.###."
